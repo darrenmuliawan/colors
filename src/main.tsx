@@ -1,17 +1,25 @@
 import { createRoot } from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { StrictMode } from 'react';
 
 import './index.css';
 import 'tailwindcss/tailwind.css';
 
-import App from './App';
+import { GeneratorPage } from 'pages';
+
+const router = createBrowserRouter([
+  {
+    path: '/generate',
+    element: <GeneratorPage />,
+  },
+]);
 
 const container = document.getElementById('root');
 if (container) {
   const root = createRoot(container);
   root.render(
     <StrictMode>
-      <App />
+      <RouterProvider router={router} />
     </StrictMode>
   );
 }
