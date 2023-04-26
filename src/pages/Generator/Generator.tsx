@@ -1,5 +1,6 @@
 import { Palette } from 'components';
 import { useEffect, useState } from 'react';
+import { Header, Overview } from 'ui';
 import { generateAnalogous, generateBase, generateComplementary } from 'utils';
 import { generateBackgroundColor } from 'utils/colors/generateBackgroundColor';
 import { generateHoverColor } from 'utils/colors/generateHoverColor';
@@ -28,9 +29,21 @@ export const GeneratorPage = () => {
   // gradient color
   const [gradientColors, setGradientColors] = useState(['#ffffff']);
 
+  // add listener for spacebar
+  document.body.onkeydown = (e) => {
+    if (e.key == ' ' || e.code == 'Space' || e.keyCode == 32) {
+      e.preventDefault();
+      generateNewColor();
+    }
+  };
+
   useEffect(() => {
-    setBaseColor(generateBase());
+    generateNewColor();
   }, []);
+
+  const generateNewColor = () => {
+    setBaseColor(generateBase());
+  };
 
   useEffect(() => {
     // secondary accent
@@ -62,62 +75,66 @@ export const GeneratorPage = () => {
   }, [baseColor]);
 
   return (
-    <body className="p-5">
-      <section className="mb-4">
-        <h2>Accent</h2>
-        <div className="flex items-center">
-          <div className="mr-2">
-            <Palette color={baseColor} label="Primary Accent" />
-          </div>
-          <div className="mr-2">
-            <Palette color={hoverAccentColor} label="Hover P. Accent" />
-          </div>
-          <div className="mr-2">
-            <Palette color={secondaryAccentColor} label="Secondary Accent" />
-          </div>
-          <div className="mr-2">
-            <Palette color={hoverSecondaryAccentColor} label="Hover S. Accent" />
-          </div>
-        </div>
-      </section>
-      <section className="mb-4">
-        <h2>Gradients</h2>
-        <div className="flex items-center">
-          {gradientColors.map((gradient, index) => (
-            <div className="mr-2" key={`gradient-${index}`}>
-              <Palette color={gradient} />
+    <body>
+      <Header />
+      <Overview baseColor={baseColor} />
+      <div className="p-5">
+        <section className="mb-4">
+          <h2>Accent</h2>
+          <div className="flex items-center">
+            <div className="mr-2">
+              <Palette color={baseColor} label="Primary Accent" />
             </div>
-          ))}
-        </div>
-      </section>
-      <section className="mb-4">
-        <h2>Text</h2>
-        <div className="flex items-center">
-          <div className="mr-2">
-            <Palette color={textColor} label="Primary Text" />
+            <div className="mr-2">
+              <Palette color={hoverAccentColor} label="Hover P. Accent" />
+            </div>
+            <div className="mr-2">
+              <Palette color={secondaryAccentColor} label="Secondary Accent" />
+            </div>
+            <div className="mr-2">
+              <Palette color={hoverSecondaryAccentColor} label="Hover S. Accent" />
+            </div>
           </div>
-          <div className="mr-2">
-            <Palette color={hoverTextColor} label="Hover P. Text" />
+        </section>
+        <section className="mb-4">
+          <h2>Gradients</h2>
+          <div className="flex items-center">
+            {gradientColors.map((gradient, index) => (
+              <div className="mr-2" key={`gradient-${index}`}>
+                <Palette color={gradient} />
+              </div>
+            ))}
           </div>
-          <div className="mr-2">
-            <Palette color={secondaryTextColor} label="Secondary Text" />
+        </section>
+        <section className="mb-4">
+          <h2>Text</h2>
+          <div className="flex items-center">
+            <div className="mr-2">
+              <Palette color={textColor} label="Primary Text" />
+            </div>
+            <div className="mr-2">
+              <Palette color={hoverTextColor} label="Hover P. Text" />
+            </div>
+            <div className="mr-2">
+              <Palette color={secondaryTextColor} label="Secondary Text" />
+            </div>
+            <div className="mr-2">
+              <Palette color={hoverSecondaryTextColor} label="Hover S. Text" />
+            </div>
+            <div className="mr-2">
+              <Palette color={tertiaryTextColor} label="Tertiary Text" />
+            </div>
           </div>
-          <div className="mr-2">
-            <Palette color={hoverSecondaryTextColor} label="Hover S. Text" />
+        </section>
+        <section className="mb-4">
+          <h2>Background</h2>
+          <div className="flex items-center">
+            <div className="mr-2">
+              <Palette color={backgroundColor} />
+            </div>
           </div>
-          <div className="mr-2">
-            <Palette color={tertiaryTextColor} label="Tertiary Text" />
-          </div>
-        </div>
-      </section>
-      <section className="mb-4">
-        <h2>Background</h2>
-        <div className="flex items-center">
-          <div className="mr-2">
-            <Palette color={backgroundColor} />
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </body>
   );
 };

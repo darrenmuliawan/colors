@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { StrictMode } from 'react';
 
 import './index.css';
+import './app.css';
 import 'tailwindcss/tailwind.css';
 
 import { GeneratorPage } from 'pages';

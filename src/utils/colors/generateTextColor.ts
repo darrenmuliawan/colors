@@ -1,7 +1,7 @@
 import chroma from 'chroma-js';
 
 export const generateTextColor = (baseColor: string) => {
-  if (baseColor.startsWith('#')) {
+  if (baseColor && baseColor.startsWith('#')) {
     const color = chroma(baseColor);
     const brightness = color.get('lab.l'); // Calculate the brightness of the base color
 
