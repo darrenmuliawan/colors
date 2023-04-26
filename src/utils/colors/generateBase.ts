@@ -51,6 +51,7 @@ export const generateBase = () => {
     // blacks,
     // whites
   );
-
-  return all[randomNumber(0, all.length)];
+  const random_index = randomNumber(0, all.length - 1);
+  console.log('random index: ', random_index, all.length);
+  return all[random_index];
 };

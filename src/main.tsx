@@ -6,12 +6,13 @@ import './index.css';
 import './app.css';
 import 'tailwindcss/tailwind.css';
 
-import { GeneratorPage } from 'pages';
+import { ErrorPage, GeneratorPage } from 'pages';
 
 const router = createBrowserRouter([
   {
     path: '/generate',
     element: <GeneratorPage />,
+    errorElement: <ErrorPage />,
   },
 ]);
 

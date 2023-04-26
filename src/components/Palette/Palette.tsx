@@ -1,28 +1,40 @@
-import { generateTextColor } from 'utils';
+import { classNames, generateTextColor } from 'utils';
 
 interface PaletteProps {
   color: string;
   label?: string;
+  size?: number;
+  withLabel?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 export const Palette = (props: PaletteProps) => {
-  const { color, label } = props;
+  const { color, label, size = 192, withLabel = true, className = '', style } = props;
 
   return (
     <div
-      className="bg-black h-[192px] w-[192px] rounded-lg flex flex-col justify-end items-center"
+      className={classNames(
+        'bg-black rounded-lg flex flex-col justify-end items-center transition duration-500 ease-in',
+        className
+      )}
       style={{
         backgroundColor: color,
+        height: size,
+        width: size,
+        ...style,
       }}
     >
-      <p
-        className="mb-0 text-lg font-bold"
-        style={{
-          color: generateTextColor(color),
-        }}
-      >
-        {color}
-      </p>
+      {withLabel && (
+        <p
+          className="mb-0 text-lg font-bold"
+          style={{
+            color: generateTextColor(color),
+          }}
+        >
+          {color}
+        </p>
+      )}
       <p
         className="mb-4 text-md font-bold"
         style={{
