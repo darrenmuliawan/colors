@@ -1,3 +1,4 @@
+import { RGBText } from 'components/Text';
 import { classNames, generateTextColor } from 'utils';
 
 interface PaletteProps {
@@ -15,7 +16,7 @@ export const Palette = (props: PaletteProps) => {
   return (
     <div
       className={classNames(
-        'bg-black rounded-lg flex flex-col justify-end items-center transition duration-500 ease-in',
+        'bg-black rounded-lg flex flex-col justify-end items-center transition duration-500 ease-in shadow-lg',
         className
       )}
       style={{
@@ -25,16 +26,7 @@ export const Palette = (props: PaletteProps) => {
         ...style,
       }}
     >
-      {withLabel && (
-        <p
-          className="mb-0 text-lg font-bold"
-          style={{
-            color: generateTextColor(color),
-          }}
-        >
-          {color}
-        </p>
-      )}
+      {withLabel && <RGBText text={color} color={generateTextColor(color)} />}
       <p
         className="mb-4 text-md font-bold"
         style={{

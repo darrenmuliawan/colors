@@ -2,14 +2,13 @@ import { Palette } from 'components';
 import { useEffect, useState } from 'react';
 import { Header, Overview } from 'ui';
 import { generateAnalogous, generateBase, generateComplementary } from 'utils';
+import { createLinearGradientCSS } from 'utils/colors/createLinearGradientCSS';
 import { generateBackgroundColor } from 'utils/colors/generateBackgroundColor';
+import { generateGradient } from 'utils/colors/generateGradient';
 import { generateHoverColor } from 'utils/colors/generateHoverColor';
 import { generateTertiaryTextColor } from 'utils/colors/generateTertiaryTextColor';
 
 export const GeneratorPage = () => {
-  // const baseColor = '#FFA726'; // Orange
-  const angle = 30;
-
   // base color
   const [baseColor, setBaseColor] = useState('#ffffff');
   const [secondaryAccentColor, setSecondaryAccentColor] = useState('#ffffff');
@@ -25,6 +24,10 @@ export const GeneratorPage = () => {
 
   // background color
   const [backgroundColor, setBackgroundColor] = useState('#ffffff');
+
+  // gradient colors
+  const [gradientColors, setGradientColors] = useState(['#ffffff']);
+  const [cssGradientColors, setCSSGradientColors] = useState('#ffffff');
 
   // add listener for spacebar
   document.body.onkeydown = (e) => {
@@ -57,7 +60,7 @@ export const GeneratorPage = () => {
 
   useEffect(() => {
     // secondary accent
-    const analogousAccent = generateAnalogous(baseColor, angle, 5);
+    const analogousAccent = generateAnalogous(baseColor, 30, 5);
     console.log(analogousAccent);
     const secondaryAccent = analogousAccent[0].hex();
     setSecondaryAccentColor(secondaryAccent);
@@ -80,15 +83,27 @@ export const GeneratorPage = () => {
 
     // background color
     setBackgroundColor(generateBackgroundColor(baseColor));
+
+    // gradient color
+    const endColor = analogousAccent[4].hex();
+    const gradientColors = generateGradient(baseColor, endColor, 5);
+    const cssGradientColor = createLinearGradientCSS(gradientColors, '45deg');
+    setCSSGradientColors(cssGradientColor);
+    setGradientColors(analogousAccent.map((c) => c.hex()));
   }, [baseColor]);
 
   return (
     <body style={{ backgroundColor: 'white' }}>
       <Header />
-      <Overview baseColor={baseColor} />
-      <div className="p-10">
-        <section className="mb-10">
-          <h2 className="text-black text-5xl">Accent</h2>
+      <Overview
+        baseColor={baseColor}
+        generateNewColor={generateNewColor}
+        gradientColors={gradientColors}
+        cssGradientColors={cssGradientColors}
+      />
+      <div className="p-10 pt-0">
+        <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
+          <h2 className="text-primary text-5xl underline-offset-8 underline mb-8">Accent</h2>
           <p className="text-2xl mb-4">
             This color is used to emphasize specific elements, such as buttons, links, or
             interactive components. It should stand out from the background and text colors to draw
@@ -113,8 +128,8 @@ export const GeneratorPage = () => {
             </div>
           </div>
         </section>
-        <section className="mb-10">
-          <h2 className="text-black text-5xl">Text</h2>
+        <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
+          <h2 className="text-primary text-5xl underline-offset-8 underline mb-8">Text</h2>
           <p className="text-2xl mb-4">
             This color is used for the main text content on the website. It should have a high
             contrast with the background color to ensure easy readability.
@@ -141,8 +156,8 @@ export const GeneratorPage = () => {
             </div>
           </div>
         </section>
-        <section className="mb-10">
-          <h2 className="text-black text-5xl">Background</h2>
+        <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
+          <h2 className="text-primary text-5xl underline-offset-8 underline mb-8">Background</h2>
           <p className="text-2xl mb-4">
             This color is used for the main background of the website. It is important to ensure
             that this color provides sufficient contrast with the text and other elements for
