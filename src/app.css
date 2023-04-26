@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Acme');
+
+.text-logo {
+  font-family: 'Acme', cursive;
+  color: #0F4C81;
+}
+
 .gradient-text {
   background-clip: text !important;
   -webkit-background-clip: text !important;

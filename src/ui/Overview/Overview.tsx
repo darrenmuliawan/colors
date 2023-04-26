@@ -15,6 +15,7 @@ export const Overview = (props: OverviewProps) => {
   // gradient colors
   const [gradientColors, setGradientColors] = useState(['#ffffff']);
   const [cssGradientColors, setCSSGradientColors] = useState('#ffffff');
+  console.log('cssGradientColors: ', cssGradientColors);
 
   useEffect(() => {
     const analogousColors = generateAnalogous(baseColor, 30, 5);
@@ -27,7 +28,7 @@ export const Overview = (props: OverviewProps) => {
 
   return (
     <section
-      className="relative flex flex-col justify-center items-center h-[40vh] m-5 rounded-lg"
+      className="relative flex flex-col justify-center items-center h-[40vh] m-10 rounded-lg"
       id="overview"
     >
       <div

@@ -35,7 +35,7 @@ export const GeneratorPage = () => {
       // animate gradient background
       const bg1 = document.getElementById('bg1');
       const bg2 = document.getElementById('bg2');
-      if (bg1) {
+      if (bg1 && bg2) {
         const bg1opacity = getComputedStyle(bg1).opacity;
         // const bg2opacity = getComputedStyle(bg2!).opacity;
         bg1.style.setProperty('opacity', bg1opacity === '0' ? '1' : '0');
@@ -86,7 +86,7 @@ export const GeneratorPage = () => {
     <body style={{ backgroundColor: 'white' }}>
       <Header />
       <Overview baseColor={baseColor} />
-      <div className="p-5">
+      <div className="p-10">
         <section className="mb-10">
           <h2 className="text-black text-5xl">Accent</h2>
           <p className="text-2xl mb-4">
