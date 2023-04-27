@@ -2,13 +2,14 @@ import React from 'react';
 
 interface ContainerProps {
   children: React.ReactNode;
+  id?: string;
 }
 
 export const Container = (props: ContainerProps) => {
-  const { children } = props;
+  const { children, id = '' } = props;
 
   return (
-    <div className="flex items-center justify-center">
+    <div id={id} className="flex items-center justify-center">
       <div className="max-w-[1440px]">{children}</div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { Button, Palette, RGBText } from 'components';
 import { BASE_COLOR, COLOR_BRAND_EXPLANATION } from 'constants';
-import { generateTextColor, isShadeOf } from 'utils';
+import { generateTextColor, isShadeOf, smoothScroll } from 'utils';
 
 interface OverviewProps {
   baseColor: string;
@@ -27,10 +27,7 @@ export const Overview = (props: OverviewProps) => {
   // }, [baseColor]);
 
   return (
-    <section
-      className="relative flex flex-col justify-center items-center h-[100vh] mb-10"
-      id="overview"
-    >
+    <section className="relative flex flex-col justify-center items-center h-[100vh]" id="overview">
       <div
         className="absolute h-full w-full transition-all ease-in duration-500 z-0 opacity-0"
         style={{
@@ -77,24 +74,8 @@ export const Overview = (props: OverviewProps) => {
       >
         {COLOR_BRAND_EXPLANATION[isShadeOf(baseColor)]}
       </h2>
-      <Button
-        onClick={generateNewColor}
-        className="absolute z-10 bottom-10 right-10"
-        style={{
-          backgroundColor: generateTextColor(baseColor),
-        }}
-      >
-        <span
-          className="gradient-text text-xl font-bold"
-          style={{
-            background: cssGradientColors,
-          }}
-        >
-          Press &apos;Space&apos; to generate new color
-        </span>
-      </Button>
-      <section className="absolute bottom-10 left-10">
-        <div className="flex items-center">
+      <section className="absolute bottom-10 w-full flex justify-between px-10">
+        <div className="flex items-center w-full">
           {gradientColors.map((gradient, index) => (
             <div className="mr-2" key={`gradient-${index}`}>
               <Palette
@@ -108,6 +89,32 @@ export const Overview = (props: OverviewProps) => {
               />
             </div>
           ))}
+        </div>
+        <div className="scroll-down w-full flex items-center justify-center">
+          <button
+            className="cursor-pointer opacity-50 hover:opacity-100 transition duration-500"
+            onClick={() => smoothScroll('explanation')}
+          >
+            <p className="text-xl">scroll for details</p>
+          </button>
+        </div>
+        <div className="w-full flex justify-end">
+          <Button
+            onClick={generateNewColor}
+            className="z-10"
+            style={{
+              backgroundColor: generateTextColor(baseColor),
+            }}
+          >
+            <span
+              className="gradient-text text-xl font-bold"
+              style={{
+                background: cssGradientColors,
+              }}
+            >
+              Press &apos;Space&apos; to generate new color
+            </span>
+          </Button>
         </div>
       </section>
     </section>

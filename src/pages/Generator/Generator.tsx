@@ -99,8 +99,8 @@ export const GeneratorPage = () => {
         gradientColors={gradientColors}
         cssGradientColors={cssGradientColors}
       />
-      <Container>
-        <div className="p-10 pt-0">
+      <Container id="explanation">
+        <div className="p-10">
           <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
             <h2 className="text-primary text-5xl underline-offset-8 underline mb-8">Accent</h2>
             <p className="text-2xl mb-4">
