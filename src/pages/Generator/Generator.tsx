@@ -53,7 +53,6 @@ export const GeneratorPage = () => {
 
   const generateNewColor = () => {
     const newColor = generateBase();
-    console.log('new color: ', newColor);
     setBaseColor(newColor);
     // setNextBaseColor(generateBase());
   };
@@ -61,7 +60,6 @@ export const GeneratorPage = () => {
   useEffect(() => {
     // secondary accent
     const analogousAccent = generateAnalogous(baseColor, 30, 5);
-    console.log(analogousAccent);
     const secondaryAccent = analogousAccent[0].hex();
     setSecondaryAccentColor(secondaryAccent);
     const hoverAccent = generateHoverColor(baseColor);

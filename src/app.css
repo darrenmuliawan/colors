@@ -19,14 +19,14 @@
 }
 
 .gradient-underline::after {
-  background: linear-gradient(60deg, #0F4C81 0%, orange 100%);
-  content: "";
+  background: linear-gradient(60deg, #0f4c81 0%, orange 100%);
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   height: 4px;
   width: 100%;
   /* we show from 0 to 7px then a gap until 9px (2px gap)*/
-  -webkit-mask:repeating-linear-gradient(to right,#fff 0 25px,transparent 0 30px);
-          mask:repeating-linear-gradient(to right,#fff 0 25px,transparent 0 30px);
+  -webkit-mask: repeating-linear-gradient(to right, #fff 0 25px, transparent 0 30px);
+  mask: repeating-linear-gradient(to right, #fff 0 25px, transparent 0 30px);
 }

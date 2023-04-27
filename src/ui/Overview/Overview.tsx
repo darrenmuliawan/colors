@@ -1,6 +1,6 @@
 import { Palette, RGBText } from 'components';
-import { BASE_COLOR } from 'constants';
-import { generateTextColor } from 'utils';
+import { BASE_COLOR, COLOR_BRAND_EXPLANATION } from 'constants';
+import { generateTextColor, isShadeOf } from 'utils';
 
 interface OverviewProps {
   baseColor: string;
@@ -70,13 +70,12 @@ export const Overview = (props: OverviewProps) => {
         className="text-3xl mb-8 z-10 font-normal"
       />
       <h2
-        className="text-2xl z-10 w-[600px] text-center"
+        className="text-2xl z-10 w-[65%] text-center"
         style={{
           color: generateTextColor(baseColor),
         }}
       >
-        Brand using the color blue is usually associated with calm, trust, competence, peace, logic,
-        and reliability
+        {COLOR_BRAND_EXPLANATION[isShadeOf(baseColor)]}
       </h2>
       {/* <button
         className="px-10 py-4 bg-white rounded-full shadow-2xl z-10"
