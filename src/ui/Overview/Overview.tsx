@@ -92,14 +92,8 @@ export const Overview = (props: OverviewProps) => {
           Copy CSS
         </span>
       </button> */}
-      <p
-        className="text-xl font-bold absolute bottom-5 right-5"
-        style={{ color: generateTextColor(baseColor) }}
-      >
-        Press &apos;Space&apos; to generate new color
-      </p>
       <button
-        className="px-6 py-3 mt-8 bg-white rounded-lg shadow-md z-10 absolute bottom-5 right-5 hover:shadow-xl transition duration-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 active:shadow-none"
+        className="px-6 py-3 mt-8 bg-white rounded-lg shadow-md z-10 absolute bottom-10 right-10 hover:shadow-xl transition duration-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 active:shadow-none"
         style={{
           backgroundColor: generateTextColor(baseColor),
         }}
@@ -114,7 +108,7 @@ export const Overview = (props: OverviewProps) => {
           Press &apos;Space&apos; to generate new color
         </span>
       </button>
-      <section className="absolute bottom-5 left-5">
+      <section className="absolute bottom-10 left-10">
         <div className="flex items-center">
           {gradientColors.map((gradient, index) => (
             <div className="mr-2" key={`gradient-${index}`}>
