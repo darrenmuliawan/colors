@@ -1,4 +1,4 @@
-import { Palette, RGBText } from 'components';
+import { Button, Palette, RGBText } from 'components';
 import { BASE_COLOR, COLOR_BRAND_EXPLANATION } from 'constants';
 import { generateTextColor, isShadeOf } from 'utils';
 
@@ -28,7 +28,7 @@ export const Overview = (props: OverviewProps) => {
 
   return (
     <section
-      className="relative flex flex-col justify-center items-center h-[60vh] mb-10"
+      className="relative flex flex-col justify-center items-center h-[100vh] mb-10"
       id="overview"
     >
       <div
@@ -77,37 +77,22 @@ export const Overview = (props: OverviewProps) => {
       >
         {COLOR_BRAND_EXPLANATION[isShadeOf(baseColor)]}
       </h2>
-      {/* <button
-        className="px-10 py-4 bg-white rounded-full shadow-2xl z-10"
-        style={{
-          backgroundColor: generateTextColor(baseColor),
-        }}
-      >
-        <span
-          className="gradient-text text-xl font-bold cursor-pointer"
-          style={{
-            background: cssGradientColors,
-          }}
-        >
-          Copy CSS
-        </span>
-      </button> */}
-      <button
-        className="px-6 py-3 mt-8 bg-white rounded-lg shadow-md z-10 absolute bottom-10 right-10 hover:shadow-xl transition duration-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 active:shadow-none"
-        style={{
-          backgroundColor: generateTextColor(baseColor),
-        }}
+      <Button
         onClick={generateNewColor}
+        className="absolute z-10 bottom-10 right-10"
+        style={{
+          backgroundColor: generateTextColor(baseColor),
+        }}
       >
         <span
-          className="gradient-text text-xl font-bold cursor-pointer"
+          className="gradient-text text-xl font-bold"
           style={{
             background: cssGradientColors,
           }}
         >
           Press &apos;Space&apos; to generate new color
         </span>
-      </button>
+      </Button>
       <section className="absolute bottom-10 left-10">
         <div className="flex items-center">
           {gradientColors.map((gradient, index) => (
