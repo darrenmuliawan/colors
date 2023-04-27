@@ -8,6 +8,10 @@ import 'tailwindcss/tailwind.css';
 
 import { ErrorPage, GeneratorPage } from 'pages';
 
+// Vercel analytics
+import { inject } from '@vercel/analytics';
+inject();
+
 const router = createBrowserRouter([
   {
     path: '/generate',
