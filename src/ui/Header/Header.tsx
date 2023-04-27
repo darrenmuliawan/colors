@@ -9,7 +9,7 @@ export const Header = () => {
   // }
 
   return (
-    <header className="px-10 shadow flex items-center justify-between py-4 border-solid border-b-gray-100 border-b-2 border-0">
+    <header className="px-10  flex items-center justify-between py-4  bg-opacity-[15%] bg-white absolute top-0 w-[100vw] h-[100px] z-[100]">
       <div className="flex items-center">
         <img
           src={Logo}

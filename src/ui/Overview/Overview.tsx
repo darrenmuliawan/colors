@@ -28,7 +28,7 @@ export const Overview = (props: OverviewProps) => {
 
   return (
     <section
-      className="relative flex flex-col justify-center items-center h-[50vh] mb-10"
+      className="relative flex flex-col justify-center items-center h-[60vh] mb-10"
       id="overview"
     >
       <div
