@@ -2,3 +2,8 @@ export * from './generateAnalogous';
 export * from './generateBase';
 export * from './generateComplementary';
 export * from './generateTextColor';
+export * from './isShadeOf';
+export * from './generateMonochromatic';
+export * from './generateSplitComplementary';
+export * from './generateTetradic';
+export * from './generateTriadic';
