@@ -28,18 +28,18 @@ export const Overview = (props: OverviewProps) => {
 
   return (
     <section
-      className="relative flex flex-col justify-center items-center h-[50vh] m-10 rounded-lg"
+      className="relative flex flex-col justify-center items-center h-[50vh] mb-10"
       id="overview"
     >
       <div
-        className="absolute h-full w-full transition-all ease-in duration-500 z-0 rounded-lg opacity-0"
+        className="absolute h-full w-full transition-all ease-in duration-500 z-0 opacity-0"
         style={{
           background: cssGradientColors,
         }}
         id="bg1"
       ></div>
       <div
-        className="absolute h-full w-full transition-all ease-in duration-500 z-0 rounded-lg opacity-100"
+        className="absolute h-full w-full transition-all ease-in duration-500 z-0 opacity-100"
         style={{
           background: cssGradientColors,
         }}

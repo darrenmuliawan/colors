@@ -30,3 +30,7 @@
   -webkit-mask: repeating-linear-gradient(to right, #fff 0 25px, transparent 0 30px);
   mask: repeating-linear-gradient(to right, #fff 0 25px, transparent 0 30px);
 }
+
+.container {
+  max-width: 1028px;
+}

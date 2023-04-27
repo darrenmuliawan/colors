@@ -1,4 +1,4 @@
-import { Palette } from 'components';
+import { Container, Palette } from 'components';
 import { useEffect, useState } from 'react';
 import { Header, Overview } from 'ui';
 import { generateAnalogous, generateBase, generateComplementary } from 'utils';
@@ -99,77 +99,79 @@ export const GeneratorPage = () => {
         gradientColors={gradientColors}
         cssGradientColors={cssGradientColors}
       />
-      <div className="p-10 pt-0">
-        <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
-          <h2 className="text-primary text-5xl underline-offset-8 underline mb-8">Accent</h2>
-          <p className="text-2xl mb-4">
-            This color is used to emphasize specific elements, such as buttons, links, or
-            interactive components. It should stand out from the background and text colors to draw
-            attention to these elements.
-          </p>
-          <p className="text-2xl">Elements:</p>
-          <code className="mb-4">
-            {`<a>, <button>, <input>, <select>, <progress>, <mark>, <span>, <svg>, <img>`}
-          </code>
-          <div className="flex items-center mt-4">
-            <div className="mr-2">
-              <Palette color={baseColor} label="Primary Accent" />
+      <Container>
+        <div className="p-10 pt-0">
+          <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
+            <h2 className="text-primary text-5xl underline-offset-8 underline mb-8">Accent</h2>
+            <p className="text-2xl mb-4">
+              This color is used to emphasize specific elements, such as buttons, links, or
+              interactive components. It should stand out from the background and text colors to
+              draw attention to these elements.
+            </p>
+            <p className="text-2xl">Elements:</p>
+            <code className="mb-4">
+              {`<a>, <button>, <input>, <select>, <progress>, <mark>, <span>, <svg>, <img>`}
+            </code>
+            <div className="flex items-center mt-4">
+              <div className="mr-2">
+                <Palette color={baseColor} label="Primary Accent" />
+              </div>
+              <div className="mr-2">
+                <Palette color={hoverAccentColor} label="Hover P. Accent" />
+              </div>
+              <div className="mr-2">
+                <Palette color={secondaryAccentColor} label="Secondary Accent" />
+              </div>
+              <div className="mr-2">
+                <Palette color={hoverSecondaryAccentColor} label="Hover S. Accent" />
+              </div>
             </div>
-            <div className="mr-2">
-              <Palette color={hoverAccentColor} label="Hover P. Accent" />
+          </section>
+          <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
+            <h2 className="text-primary text-5xl underline-offset-8 underline mb-8">Text</h2>
+            <p className="text-2xl mb-4">
+              This color is used for the main text content on the website. It should have a high
+              contrast with the background color to ensure easy readability.
+            </p>
+            <p className="text-2xl">Elements:</p>
+            <code className="mb-4">
+              {`<h1>, <h2>, <h3>, <h4>, <h5>, <h6>, <p>, <a>, <li>, <span>, <blockquote>`}
+            </code>
+            <div className="flex items-center mt-4">
+              <div className="mr-2">
+                <Palette color={textColor} label="Primary Text" />
+              </div>
+              <div className="mr-2">
+                <Palette color={hoverTextColor} label="Hover P. Text" />
+              </div>
+              <div className="mr-2">
+                <Palette color={secondaryTextColor} label="Secondary Text" />
+              </div>
+              <div className="mr-2">
+                <Palette color={hoverSecondaryTextColor} label="Hover S. Text" />
+              </div>
+              <div className="mr-2">
+                <Palette color={tertiaryTextColor} label="Tertiary Text" />
+              </div>
             </div>
-            <div className="mr-2">
-              <Palette color={secondaryAccentColor} label="Secondary Accent" />
+          </section>
+          <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
+            <h2 className="text-primary text-5xl underline-offset-8 underline mb-8">Background</h2>
+            <p className="text-2xl mb-4">
+              This color is used for the main background of the website. It is important to ensure
+              that this color provides sufficient contrast with the text and other elements for
+              readability and accessibility.
+            </p>
+            <p className="text-2xl">Elements:</p>
+            <code className="mb-4">{`<body>, <header>, <footer>, <section>, <div>`}</code>
+            <div className="flex items-center mt-4">
+              <div className="mr-2">
+                <Palette color={backgroundColor} />
+              </div>
             </div>
-            <div className="mr-2">
-              <Palette color={hoverSecondaryAccentColor} label="Hover S. Accent" />
-            </div>
-          </div>
-        </section>
-        <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
-          <h2 className="text-primary text-5xl underline-offset-8 underline mb-8">Text</h2>
-          <p className="text-2xl mb-4">
-            This color is used for the main text content on the website. It should have a high
-            contrast with the background color to ensure easy readability.
-          </p>
-          <p className="text-2xl">Elements:</p>
-          <code className="mb-4">
-            {`<h1>, <h2>, <h3>, <h4>, <h5>, <h6>, <p>, <a>, <li>, <span>, <blockquote>`}
-          </code>
-          <div className="flex items-center mt-4">
-            <div className="mr-2">
-              <Palette color={textColor} label="Primary Text" />
-            </div>
-            <div className="mr-2">
-              <Palette color={hoverTextColor} label="Hover P. Text" />
-            </div>
-            <div className="mr-2">
-              <Palette color={secondaryTextColor} label="Secondary Text" />
-            </div>
-            <div className="mr-2">
-              <Palette color={hoverSecondaryTextColor} label="Hover S. Text" />
-            </div>
-            <div className="mr-2">
-              <Palette color={tertiaryTextColor} label="Tertiary Text" />
-            </div>
-          </div>
-        </section>
-        <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
-          <h2 className="text-primary text-5xl underline-offset-8 underline mb-8">Background</h2>
-          <p className="text-2xl mb-4">
-            This color is used for the main background of the website. It is important to ensure
-            that this color provides sufficient contrast with the text and other elements for
-            readability and accessibility.
-          </p>
-          <p className="text-2xl">Elements:</p>
-          <code className="mb-4">{`<body>, <header>, <footer>, <section>, <div>`}</code>
-          <div className="flex items-center mt-4">
-            <div className="mr-2">
-              <Palette color={backgroundColor} />
-            </div>
-          </div>
-        </section>
-      </div>
+          </section>
+        </div>
+      </Container>
     </body>
   );
 };
