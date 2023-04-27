@@ -14,7 +14,7 @@ inject();
 
 const router = createBrowserRouter([
   {
-    path: '/generate',
+    path: '/',
     element: <GeneratorPage />,
     errorElement: <ErrorPage />,
   },
