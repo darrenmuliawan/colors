@@ -26,7 +26,7 @@ export const Header = () => {
       <div className="flex items-center pl-10" ref={headerRef}>
         <ToolsDropdown stayOpenRef={headerRef} />
         <Button className="rounded-full text-2xl group" type="secondary">
-          <p className="transition duration-300">we&apos;re cooking something &#128064;</p>
+          <p className="transition duration-300">coming soon &#128064;</p>
         </Button>
       </div>
     </header>
