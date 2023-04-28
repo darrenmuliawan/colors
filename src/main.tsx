@@ -5,6 +5,7 @@ import { StrictMode } from 'react';
 import './index.css';
 import './app.css';
 import 'tailwindcss/tailwind.css';
+import { Root } from 'root';
 
 import { ErrorPage, GeneratorPage } from 'pages';
 
@@ -15,7 +16,13 @@ inject();
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <GeneratorPage />,
+    element: <Root />,
+    children: [
+      {
+        path: '',
+        element: <GeneratorPage />,
+      },
+    ],
     errorElement: <ErrorPage />,
   },
 ]);

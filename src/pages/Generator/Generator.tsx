@@ -91,7 +91,7 @@ export const GeneratorPage = () => {
   }, [baseColor]);
 
   return (
-    <body style={{ backgroundColor: 'white' }}>
+    <div style={{ backgroundColor: 'white' }}>
       <Header />
       <Overview
         baseColor={baseColor}
@@ -172,6 +172,6 @@ export const GeneratorPage = () => {
           </section>
         </div>
       </Container>
-    </body>
+    </div>
   );
 };

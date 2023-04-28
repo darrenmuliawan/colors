@@ -1,0 +1,25 @@
+.scale-up-bottom {
+  animation: scale-up-bottom 0.4s;
+}
+
+@keyframes scale-up-bottom {
+  0% {
+    transform: scale(.0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.scale-down-bottom {
+  animation: scale-down-bottom 0.4s;
+}
+
+@keyframes scale-down-bottom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.5);
+  }
+}
