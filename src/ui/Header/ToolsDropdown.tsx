@@ -1,5 +1,7 @@
 import { Button, Dropdown } from 'components';
+import { useGeneratorColor } from 'hooks';
 import { useRef, useState } from 'react';
+import { generateTextColor } from 'utils';
 
 interface ToolOptionProps {
   option: string;
@@ -45,6 +47,7 @@ interface ToolsDropdownProps {
 
 export const ToolsDropdown = (props: ToolsDropdownProps) => {
   const { stayOpenRef } = props;
+  const { baseColor } = useGeneratorColor();
 
   const options = ['generator', 'wallpaper', 'colors'];
   const [open, setIsOpen] = useState(false);
@@ -79,7 +82,15 @@ export const ToolsDropdown = (props: ToolsDropdownProps) => {
 
   return (
     <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <Dropdown open={open} setIsOpen={setIsOpen} title="Tools" dropdownClassName="w-[400px] p-2">
+      <Dropdown
+        open={open}
+        setIsOpen={setIsOpen}
+        title="Tools"
+        dropdownClassName="w-[400px] p-2"
+        style={{
+          color: generateTextColor(baseColor),
+        }}
+      >
         {options.map((option, index) => (
           <ToolsOption key={`tools-${index}`} option={option} onClick={onSelectOption} />
         ))}

@@ -9,10 +9,11 @@ interface DropdownProps {
   children: React.ReactElement[];
   open: boolean;
   setIsOpen: (open: boolean) => void;
+  style?: React.CSSProperties;
 }
 
 export const Dropdown = (props: DropdownProps) => {
-  const { title, className = '', children, open, setIsOpen, dropdownClassName = '' } = props;
+  const { title, className = '', children, open, setIsOpen, dropdownClassName = '', style } = props;
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -37,6 +38,7 @@ export const Dropdown = (props: DropdownProps) => {
         type="text"
         onClick={() => setIsOpen(!open)}
         className="text-white hover:text-text-tertiary font-semibold ring-0 outline-none focus:ring-0 active:ring-0"
+        style={style}
       >
         {title}
       </Button>
