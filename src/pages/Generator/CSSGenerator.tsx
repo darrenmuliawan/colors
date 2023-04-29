@@ -189,7 +189,6 @@ export const CSSGenerator = () => {
       <CodeBlock
         title={selectedType === 'css' ? 'styles.css' : 'tailwind.config.js'}
         code={selectedType === 'css' ? css : tailwindCSS}
-        className="language-css"
         onCopy={handleCopyCode}
       />
     </section>

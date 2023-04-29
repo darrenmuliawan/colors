@@ -1,6 +1,9 @@
 import { Button } from 'components/Button';
 import { classNames } from 'utils';
 import { Highlight, themes } from 'prism-react-renderer';
+import { ReactComponent as CopyIcon } from 'assets/svg/copy.svg';
+import { ReactComponent as CheckmarkIcon } from 'assets/svg/checkmark.svg';
+import { useInfoPopup } from 'hooks';
 
 interface CodeBlockProps {
   code: string;
@@ -12,6 +15,7 @@ interface CodeBlockProps {
 
 export const CodeBlock = (props: CodeBlockProps) => {
   const { code, title, language = 'typescript', theme, onCopy } = props;
+  const { isOpen } = useInfoPopup();
 
   const getTheme = () => {
     if (theme === 'vsDark') {
@@ -28,10 +32,15 @@ export const CodeBlock = (props: CodeBlockProps) => {
         {onCopy && (
           <Button
             type="text"
-            className="text-white text-lg px-0 py-0 ring-0 hover:text-white focus:outline-none focus:ring-offset-0 focus:shadow-none focus:ring-0 outline-none active:ring-0 active:outline-none"
+            className="text-white text-lg px-0 py-0 ring-0 hover:text-white focus:outline-none focus:ring-offset-0 focus:shadow-none focus:ring-0 outline-none active:ring-0 active:outline-none flex items-center"
             onClick={() => onCopy(code)}
           >
-            <p>Copy code</p>
+            {isOpen ? (
+              <CheckmarkIcon height={24} width={24} />
+            ) : (
+              <CopyIcon height={24} width={24} />
+            )}
+            <p className="ml-2">{isOpen ? 'Copied!' : 'Copy code'}</p>
           </Button>
         )}
       </div>
