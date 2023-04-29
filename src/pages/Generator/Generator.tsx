@@ -1,33 +1,25 @@
 import { Container, Palette } from 'components';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Header, Overview } from 'ui';
-import { generateAnalogous, generateBase, generateComplementary } from 'utils';
-import { createLinearGradientCSS } from 'utils/colors/createLinearGradientCSS';
-import { generateBackgroundColor } from 'utils/colors/generateBackgroundColor';
-import { generateGradient } from 'utils/colors/generateGradient';
-import { generateHoverColor } from 'utils/colors/generateHoverColor';
-import { generateTertiaryTextColor } from 'utils/colors/generateTertiaryTextColor';
+import { CSSGenerator } from './CSSGenerator';
+import { useGeneratorColor } from 'hooks';
 
 export const GeneratorPage = () => {
-  // base color
-  const [baseColor, setBaseColor] = useState('#ffffff');
-  const [secondaryAccentColor, setSecondaryAccentColor] = useState('#ffffff');
-  const [hoverAccentColor, setHoverAccentColor] = useState('#ffffff');
-  const [hoverSecondaryAccentColor, setHoverSecondaryAccentColor] = useState('#ffffff');
-
-  // text color
-  const [textColor, setTextColor] = useState('#ffffff');
-  const [secondaryTextColor, setSecondaryTextColor] = useState('#ffffff');
-  const [tertiaryTextColor, setTertiaryTextColor] = useState('#ffffff');
-  const [hoverTextColor, setHoverTextColor] = useState('#ffffff');
-  const [hoverSecondaryTextColor, setHoverSecondaryTextColor] = useState('#ffffff');
-
-  // background color
-  const [backgroundColor, setBackgroundColor] = useState('#ffffff');
-
-  // gradient colors
-  const [gradientColors, setGradientColors] = useState(['#ffffff']);
-  const [cssGradientColors, setCSSGradientColors] = useState('#ffffff');
+  const {
+    baseColor,
+    secondaryAccentColor,
+    hoverAccentColor,
+    hoverSecondaryAccentColor,
+    textColor,
+    secondaryTextColor,
+    tertiaryTextColor,
+    hoverTextColor,
+    hoverSecondaryTextColor,
+    backgroundColor,
+    gradientColors,
+    cssGradientColors,
+    generateNewColor,
+  } = useGeneratorColor();
 
   // add listener for spacebar
   document.body.onkeydown = (e) => {
@@ -49,46 +41,8 @@ export const GeneratorPage = () => {
 
   useEffect(() => {
     generateNewColor();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const generateNewColor = () => {
-    const newColor = generateBase();
-    setBaseColor(newColor);
-    // setNextBaseColor(generateBase());
-  };
-
-  useEffect(() => {
-    // secondary accent
-    const analogousAccent = generateAnalogous(baseColor, 30, 5);
-    const secondaryAccent = analogousAccent[0].hex();
-    setSecondaryAccentColor(secondaryAccent);
-    const hoverAccent = generateHoverColor(baseColor);
-    setHoverAccentColor(hoverAccent);
-    const hoverSecondaryAccentColor = generateHoverColor(secondaryAccent);
-    setHoverSecondaryAccentColor(hoverSecondaryAccentColor);
-
-    // text color
-    const textColor = generateComplementary(baseColor);
-    setTextColor(textColor);
-    const secondaryTextColor = generateComplementary(secondaryAccent);
-    setSecondaryTextColor(secondaryTextColor);
-    const tertiaryTextColor = generateTertiaryTextColor(baseColor);
-    setTertiaryTextColor(tertiaryTextColor);
-    const hoverTextColor = generateHoverColor(textColor);
-    setHoverTextColor(hoverTextColor);
-    const secondaryHoverTextColor = generateHoverColor(secondaryTextColor);
-    setHoverSecondaryTextColor(secondaryHoverTextColor);
-
-    // background color
-    setBackgroundColor(generateBackgroundColor(baseColor));
-
-    // gradient color
-    const endColor = analogousAccent[4].hex();
-    const gradientColors = generateGradient(baseColor, endColor, 5);
-    const cssGradientColor = createLinearGradientCSS(gradientColors, '45deg');
-    setCSSGradientColors(cssGradientColor);
-    setGradientColors(analogousAccent.map((c) => c.hex()));
-  }, [baseColor]);
 
   return (
     <div style={{ backgroundColor: 'white' }}>
@@ -101,6 +55,7 @@ export const GeneratorPage = () => {
       />
       <Container id="explanation">
         <div className="p-10">
+          <CSSGenerator />
           <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
             <h2 className="text-primary text-5xl underline-offset-8 underline mb-8">Accent</h2>
             <p className="text-2xl mb-4">

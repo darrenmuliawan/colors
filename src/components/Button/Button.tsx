@@ -7,10 +7,19 @@ interface ButtonProps {
   className?: string;
   style?: React.CSSProperties;
   type?: 'primary' | 'secondary' | 'text';
+  active?: boolean;
 }
 
 export const Button = (props: ButtonProps) => {
-  const { children, disabled = false, onClick, className = '', style, type = 'primary' } = props;
+  const {
+    children,
+    disabled = false,
+    onClick,
+    className = '',
+    style,
+    type = 'primary',
+    active = false,
+  } = props;
 
   return (
     <button
@@ -26,6 +35,7 @@ export const Button = (props: ButtonProps) => {
         type === 'text'
           ? 'shadow-none text-2xl bg-transparent hover:shadow-none text-primary hover:text-primary-hover'
           : '',
+        active ? 'ring-2 ring-offset-2 ring-primary' : '',
         className
       )}
       style={style}

@@ -39,7 +39,7 @@ export const isShadeOf = (color: string) => {
   const hue = hsl[0];
   const saturation = hsl[1];
   const lightness = hsl[2];
-  console.log(hue, saturation, lightness);
+  // console.log(hue, saturation, lightness);
   const targetHues = {
     red: [345, 15],
     orange: [15, 45],

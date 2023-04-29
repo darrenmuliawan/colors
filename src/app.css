@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Acme');
 @import url(assets/css/animation/scale.css);
 @import url(assets/css/animation/slide.css);
+@import url(assets/css/font/font.css);
 
 .text-logo {
   font-family: 'Acme', cursive;

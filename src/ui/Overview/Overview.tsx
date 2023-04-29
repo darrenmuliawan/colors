@@ -12,20 +12,6 @@ interface OverviewProps {
 export const Overview = (props: OverviewProps) => {
   const { baseColor, generateNewColor, cssGradientColors, gradientColors } = props;
 
-  // gradient colors
-  // const [gradientColors, setGradientColors] = useState(['#ffffff']);
-  // const [cssGradientColors, setCSSGradientColors] = useState('#ffffff');
-  // console.log('cssGradientColors: ', cssGradientColors);
-
-  // useEffect(() => {
-  //   const analogousColors = generateAnalogous(baseColor, 30, 5);
-  //   const endColor = analogousColors[4].hex();
-  //   const gradientColors = generateGradient(baseColor, endColor, 5);
-  //   const cssGradientColor = createLinearGradientCSS(gradientColors, '45deg');
-  //   setCSSGradientColors(cssGradientColor);
-  //   setGradientColors(analogousColors.map((c) => c.hex()));
-  // }, [baseColor]);
-
   return (
     <section className="relative flex flex-col justify-center items-center h-[100vh]" id="overview">
       <div
