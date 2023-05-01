@@ -20,6 +20,10 @@ export const WallpaperToolbar = (props: WallpaperToolbarProps) => {
     },
     {
       name: '2',
+      style: 'center',
+    },
+    {
+      name: '3',
       style: 'clean',
     },
   ];
