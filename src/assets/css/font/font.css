@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Acme');
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+@import url('https://fonts.googleapis.com/css?family=Bayon');
 
 pre {
   font-family: 'Source Code Pro';
+}
+
+h1 {
+  font-family: 'Bayon';
 }

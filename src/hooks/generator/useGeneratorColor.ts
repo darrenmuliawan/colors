@@ -7,7 +7,7 @@ import { generateHoverColor } from 'utils/colors/generateHoverColor';
 import { generateTertiaryTextColor } from 'utils/colors/generateTertiaryTextColor';
 
 // accent color
-const _baseColor = atom('#ffffff');
+const _baseColor = atom('#0F4C81');
 const _secondaryAccentColor = atom('#ffffff');
 const _hoverAccentColor = atom('#ffffff');
 const _hoverSecondaryAccentColor = atom('#ffffff');

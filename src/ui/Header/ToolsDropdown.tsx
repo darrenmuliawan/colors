@@ -1,6 +1,8 @@
-import { Button, Dropdown } from 'components';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Button, Dropdown, Palette } from 'components';
 import { useGeneratorColor } from 'hooks';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { generateTextColor } from 'utils';
 
 interface ToolOptionProps {
@@ -9,14 +11,13 @@ interface ToolOptionProps {
 }
 const ToolsOption = (props: ToolOptionProps) => {
   const { option, onClick } = props;
+  const { baseColor } = useGeneratorColor();
 
   const getTitle = () => {
     if (option === 'generator') {
       return 'Palette Generator';
     } else if (option === 'wallpaper') {
       return 'Wallpaper';
-    } else if (option === 'colors') {
-      return 'Colors';
     }
   };
 
@@ -24,20 +25,31 @@ const ToolsOption = (props: ToolOptionProps) => {
     if (option === 'generator') {
       return 'Generate beautiful color palettes in seconds';
     } else if (option === 'wallpaper') {
-      return 'Create customized wallpapers for your computer or phone';
-    } else if (option === 'colors') {
-      return 'Explore beautiful colors';
+      return 'Explore colors and create customized wallpapers';
+    }
+  };
+
+  const getIcon = () => {
+    if (option === 'generator') {
+      return '';
+    } else if (option === 'wallpaper') {
+      return <Palette color={baseColor} size={40} withLabel={false} />;
     }
   };
 
   return (
-    <Button
-      className="w-full  mb-2 bg-transparent shadow-none hover:shadow-none hover:bg-neutral p-2 text-left last:mb-0"
-      onClick={() => onClick(option)}
-    >
-      <p className="text-2xl text-black">{getTitle()}</p>
-      <h6 className="text-lg text-black">{getDescription()}</h6>
-    </Button>
+    <Link to={'/colors'}>
+      <Button
+        className="w-full flex items-center  mb-2 bg-transparent shadow-none hover:shadow-none hover:bg-neutral p-2 text-left last:mb-0"
+        onClick={() => onClick(option)}
+      >
+        <div className="mr-3">{getIcon()}</div>
+        <div className="w-full">
+          <p className="text-xl text-neutral-dark font-bold">{getTitle()}</p>
+          <h6 className="text-sm text-neutral-light">{getDescription()}</h6>
+        </div>
+      </Button>
+    </Link>
   );
 };
 
@@ -49,9 +61,21 @@ export const ToolsDropdown = (props: ToolsDropdownProps) => {
   const { stayOpenRef } = props;
   const { baseColor } = useGeneratorColor();
 
-  const options = ['generator', 'wallpaper', 'colors'];
+  const options = ['generator', 'wallpaper'];
   const [open, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // text color
+  const [textColor, setTextColor] = useState('#ffffff');
+  const pathname = window.location.pathname;
+
+  useEffect(() => {
+    if (pathname === '/' || pathname === '/generate') {
+      setTextColor(generateTextColor(baseColor));
+    } else {
+      setTextColor('#000000');
+    }
+  }, [pathname]);
 
   const onSelectOption = (option: string) => {
     console.log('option: ', option);
@@ -88,7 +112,7 @@ export const ToolsDropdown = (props: ToolsDropdownProps) => {
         title="Tools"
         dropdownClassName="w-[400px] p-2"
         style={{
-          color: generateTextColor(baseColor),
+          color: textColor,
         }}
       >
         {options.map((option, index) => (

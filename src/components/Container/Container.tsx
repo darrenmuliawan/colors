@@ -10,7 +10,7 @@ export const Container = (props: ContainerProps) => {
 
   return (
     <div id={id} className="flex items-center justify-center">
-      <div className="max-w-[1440px]">{children}</div>
+      <div className="max-w-[1440px] w-full">{children}</div>
     </div>
   );
 };

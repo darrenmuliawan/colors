@@ -7,7 +7,7 @@ import './app.css';
 import 'tailwindcss/tailwind.css';
 import { Root } from 'root';
 
-import { ErrorPage, GeneratorPage } from 'pages';
+import { ColorsPage, ErrorPage, GeneratorPage } from 'pages';
 
 // Vercel analytics
 import { inject } from '@vercel/analytics';
@@ -21,6 +21,11 @@ const router = createBrowserRouter([
       {
         path: '',
         element: <GeneratorPage />,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: '/colors',
+        element: <ColorsPage />,
         errorElement: <ErrorPage />,
       },
     ],

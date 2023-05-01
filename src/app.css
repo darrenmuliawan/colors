@@ -80,3 +80,24 @@
     transform: translateY(10px);
   }
 }
+
+.dropdown::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+  border-left: 10px solid white;
+  transform: rotate(45deg);
+  background-color: yellow;
+}
+
+.wallpaper {
+  transition-property: color;
+  transition-delay: 0.2s;
+  transition-timing-function: linear;
+}

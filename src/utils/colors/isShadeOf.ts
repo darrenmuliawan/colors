@@ -1,38 +1,9 @@
 import chroma from 'chroma-js';
-import {
-  blacks,
-  blues,
-  browns,
-  greens,
-  oranges,
-  pinks,
-  purples,
-  reds,
-  whites,
-  yellows,
-} from 'constants';
+import { BASE_COLOR } from 'constants';
 
 export const isShadeOf = (color: string) => {
-  if (reds.includes(color)) {
-    return 'red';
-  } else if (blues.includes(color)) {
-    return 'blue';
-  } else if (greens.includes(color)) {
-    return 'green';
-  } else if (yellows.includes(color)) {
-    return 'yellow';
-  } else if (oranges.includes(color)) {
-    return 'orange';
-  } else if (purples.includes(color)) {
-    return 'purple';
-  } else if (pinks.includes(color)) {
-    return 'pink';
-  } else if (browns.includes(color)) {
-    return 'brown';
-  } else if (blacks.includes(color)) {
-    return 'black';
-  } else if (whites.includes(color)) {
-    return 'white';
+  if (Object.keys(BASE_COLOR).includes(color)) {
+    return BASE_COLOR[color].shade;
   }
 
   const hsl = chroma(color).hsl();

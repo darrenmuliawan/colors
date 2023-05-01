@@ -1,25 +1,33 @@
 .slide-top {
-  animation: slide-top 0.5s linear both;
+  animation: slide-top 0.35s linear both;
 }
 
 @keyframes slide-top {
   0% {
-    transform: translateY(0);
+    transform: translateY(100vh);
   }
   100% {
-    transform: translateY(-100px);
+    transform: translateY(0);
   }
 }
 
 .slide-bottom {
-  animation: slide-bottom 0.5s linear both;
+  animation: slide-bottom 0.35s linear both;
+  /* animation: hidden 0.4s; */
 }
 
 @keyframes slide-bottom {
   0% {
-    transform: translateY(100px);
+    transform: translateY(0);
   }
   100% {
-    transform: translateY(0);
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes hidden {
+  100% {
+    opacity: 0;
+    display: hidden;
   }
 }

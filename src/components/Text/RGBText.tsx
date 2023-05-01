@@ -12,6 +12,7 @@ export const RGBText = (props: RGBTextProps) => {
   const { showPopup } = useInfoPopup();
 
   const copyToClipboard = (e: React.MouseEvent<HTMLParagraphElement>) => {
+    e.stopPropagation();
     if (e.buttons) e.preventDefault();
     navigator.clipboard.writeText(text);
     showPopup('Copied to clipboard!');

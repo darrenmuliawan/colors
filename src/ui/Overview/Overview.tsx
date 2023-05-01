@@ -44,7 +44,7 @@ export const Overview = (props: OverviewProps) => {
             color: generateTextColor(baseColor),
           }}
         >
-          {BASE_COLOR[baseColor]}
+          {BASE_COLOR[baseColor].name}
         </h1>
       </div>
       <RGBText
@@ -91,6 +91,8 @@ export const Overview = (props: OverviewProps) => {
             style={{
               backgroundColor: generateTextColor(baseColor),
             }}
+            shadow
+            outlined
           >
             <span
               className="gradient-text text-xl font-bold"

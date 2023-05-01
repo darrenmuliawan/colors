@@ -1,6 +1,6 @@
 import { Container, Palette } from 'components';
 import { useEffect } from 'react';
-import { Header, Overview } from 'ui';
+import { Overview } from 'ui';
 import { CSSGenerator } from './CSSGenerator';
 import { useGeneratorColor } from 'hooks';
 
@@ -21,32 +21,36 @@ export const GeneratorPage = () => {
     generateNewColor,
   } = useGeneratorColor();
 
-  // add listener for spacebar
-  document.body.onkeydown = (e) => {
-    if (e.key == ' ' || e.code == 'Space' || e.keyCode == 32) {
-      e.preventDefault();
-      generateNewColor();
-
-      // animate gradient background
-      const bg1 = document.getElementById('bg1');
-      const bg2 = document.getElementById('bg2');
-      if (bg1 && bg2) {
-        const bg1opacity = getComputedStyle(bg1).opacity;
-        // const bg2opacity = getComputedStyle(bg2!).opacity;
-        bg1.style.setProperty('opacity', bg1opacity === '0' ? '1' : '0');
-        bg2.style.setProperty('opacity', bg1opacity === '0' ? '0' : '1');
-      }
-    }
-  };
-
   useEffect(() => {
+    // add listener for spacebar
+    const handleSpacebar = (e: KeyboardEvent) => {
+      if (e.key == ' ' || e.code == 'Space' || e.keyCode == 32) {
+        e.preventDefault();
+        generateNewColor();
+
+        // animate gradient background
+        const bg1 = document.getElementById('bg1');
+        const bg2 = document.getElementById('bg2');
+        if (bg1 && bg2) {
+          const bg1opacity = getComputedStyle(bg1).opacity;
+          // const bg2opacity = getComputedStyle(bg2!).opacity;
+          bg1.style.setProperty('opacity', bg1opacity === '0' ? '1' : '0');
+          bg2.style.setProperty('opacity', bg1opacity === '0' ? '0' : '1');
+        }
+      }
+    };
+    window.addEventListener('keydown', handleSpacebar);
+
     generateNewColor();
+
+    return () => {
+      window.removeEventListener('keydown', handleSpacebar);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div style={{ backgroundColor: 'white' }}>
-      <Header />
       <Overview
         baseColor={baseColor}
         generateNewColor={generateNewColor}
