@@ -25,7 +25,7 @@ export const InfoPopup = () => {
   return (
     <div
       className={classNames(
-        'flex left-1/2 transition-all duration-300 transform -translate-x-1/2 items-center fixed bottom-10 p-3 px-4 bg-white rounded-lg text-lg z-[1000] shadow-xl',
+        'flex left-1/2 transition-all duration-300 transform -translate-x-1/2 items-center fixed bottom-10 p-3 px-4 bg-white rounded-lg text-lg z-[5000] shadow-xl',
         show ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-0'
       )}
     >

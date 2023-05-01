@@ -1,20 +1,99 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { useColorsState } from 'hooks';
+import { useColorsState, useInfoPopup } from 'hooks';
 import { useEffect, useRef, useState } from 'react';
 import { classNames, generateTextColor } from 'utils';
 import { ReactComponent as CloseIcon } from 'assets/svg/close.svg';
 import { BASE_COLOR } from 'constants';
 import { WallpaperToolbar } from './WallpaperToolbar';
+import { HelpOverlay } from 'components';
 
 export const WallpaperEditor = () => {
-  const { selectedColor, wallpaperVisible, closeWallpaper, wallpaperStyle } = useColorsState();
+  const {
+    selectedColor,
+    wallpaperVisible,
+    closeWallpaper,
+    wallpaperStyle,
+    shouldShowHelp,
+    closeHelp,
+  } = useColorsState();
   const [hidden, setHidden] = useState(true);
+
+  // contact email
+  const { showPopup } = useInfoPopup();
+  const CONTACT_EMAIL = 'darren@chromax.io';
+
+  // refs
   const wallpaperRef = useRef<HTMLDivElement>(null);
+  const stylesToolbarRef = useRef<HTMLDivElement>(null);
+  const toolbarRef = useRef<HTMLDivElement>(null);
+  const downloadButtonRef = useRef<HTMLDivElement>(null);
+  const helpButtonRef = useRef<HTMLDivElement>(null);
+
+  // help
+  const HELP_STEPS = [
+    {
+      targetRef: toolbarRef,
+      text: (
+        <p className="text-lg mb-4">
+          The toolbar designed for the wallpaper editor is presented here.
+        </p>
+      ),
+    },
+    {
+      targetRef: stylesToolbarRef,
+      text: (
+        <p className="text-lg mb-4">
+          We have 3 different styles to choose from in this section. Additional styling and
+          personalization options are coming soon!
+        </p>
+      ),
+      width: 450,
+    },
+    {
+      targetRef: downloadButtonRef,
+      text: (
+        <p className="text-lg mb-4">
+          After you have finished creating your wallpaper, press the download button to save it!
+        </p>
+      ),
+      width: 450,
+    },
+    {
+      targetRef: helpButtonRef,
+      text: (
+        <p className="text-lg mb-4">
+          That concludes the instructions! You can access this help guide again by clicking on the
+          help button.
+        </p>
+      ),
+      width: 450,
+    },
+    {
+      targetRef: helpButtonRef,
+      text: (
+        <p className="text-lg mb-4">
+          If you have any feedback or ideas, please do not hesitate to reach out to me via{' '}
+          <span
+            className="text-blue-600 underline cursor-pointer"
+            onClick={() => {
+              navigator.clipboard.writeText(CONTACT_EMAIL);
+              showPopup('Copied to clipboard!');
+            }}
+          >
+            {CONTACT_EMAIL}
+          </span>
+          . Thank you :)
+        </p>
+      ),
+      width: 450,
+    },
+  ];
 
   useEffect(() => {
     const escListener = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         closeWallpaper();
+        closeHelp();
       }
     };
     window.addEventListener('keydown', escListener);
@@ -35,24 +114,32 @@ export const WallpaperEditor = () => {
     setTimeout(() => {
       setHidden(true);
     }, 500);
+    closeHelp();
   };
 
   return (
     <div
       className={classNames(
         'fixed flex top-0 left-0 z-[0] transition-all duration-300 h-full w-full',
-        wallpaperVisible ? 'slide-top z-[1000]' : 'slide-bottom',
+        wallpaperVisible ? 'slide-top z-[999]' : 'slide-bottom',
         hidden ? 'hidden' : ''
       )}
       id="wallpaper-editor"
     >
-      <div className="relative h-full w-full z-[2000]">
+      <div className="relative h-full w-full">
         <CloseIcon
-          className="absolute top-10 right-10 cursor-pointer opacity-30 hover:opacity-100"
+          className="absolute top-10 right-10 cursor-pointer opacity-70 hover:opacity-100 z-[1000]"
           height={32}
           onClick={() => handleCloseWallpaper()}
+          color={generateTextColor(selectedColor)}
         />
-        <WallpaperToolbar wallpaperRef={wallpaperRef} />
+        <WallpaperToolbar
+          wallpaperRef={wallpaperRef}
+          stylesToolbarRef={stylesToolbarRef}
+          toolbarRef={toolbarRef}
+          downloadButtonRef={downloadButtonRef}
+          helpButtonRef={helpButtonRef}
+        />
       </div>
       <div
         className={classNames('absolute duration-500 transition h-full w-full wallpaper')}
@@ -111,6 +198,7 @@ export const WallpaperEditor = () => {
             </div>
           </div>
         )}
+        {shouldShowHelp && <HelpOverlay steps={HELP_STEPS} onClose={closeHelp} />}
       </div>
     </div>
   );

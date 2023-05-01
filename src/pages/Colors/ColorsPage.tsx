@@ -19,7 +19,7 @@ export const ColorsPage = () => {
         </div>
         {/* <div className="w-full h-full flex justify-center items-center">color selection here</div> */}
       </section>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-10">
         {Object.keys(BASE_COLOR).map((color, index) => (
           <ColorPalette color={color} key={`color-${index}`} />
         ))}
