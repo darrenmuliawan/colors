@@ -3,6 +3,18 @@ module.exports = {
   content: ['./src/**/*.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      screens: {
+        // https://tailwindcss.com/docs/screens
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
+
+        // https://tailwindcss.com/docs/responsive-design#customizing-breakpoints
+        mobile: '0px',
+        desktop: '640px',
+      },
       colors: {
         primary: '#0F4C81',
         'primary-hover': '#416EA7',

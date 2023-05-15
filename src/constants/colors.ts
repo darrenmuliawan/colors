@@ -931,4 +931,5 @@ export const COLOR_BRAND_EXPLANATION: { [key: string]: string } = {
     'Black is a strong and sophisticated color that represents elegance, power, and authority. It is often used by brands that want to convey a sense of luxury and exclusivity. Black can be associated with formality, mystery, and seriousness, making it a popular choice for brands in the fashion, automotive, and technology industries.',
   white:
     'White is a clean and simple color that represents purity, innocence, and minimalism. It is often used by brands that want to convey a sense of simplicity and sophistication. White can be associated with freshness, clarity, and modernity, making it a popular choice for brands in the technology, healthcare, and home goods industries.',
+  gray: "Gray is often associated with balance, neutrality, and calmness. It's a color that can be seen as sophisticated, classic, serious, and professional. This makes it a popular choice for industries such as technology, automotive, and finance, where these qualities are often desired.",
 };

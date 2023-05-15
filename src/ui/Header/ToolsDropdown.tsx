@@ -3,7 +3,6 @@ import { Button, Dropdown, Palette } from 'components';
 import { useGeneratorColor } from 'hooks';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { generateTextColor } from 'utils';
 
 interface ToolOptionProps {
   option: string;
@@ -71,11 +70,11 @@ export const ToolsDropdown = (props: ToolsDropdownProps) => {
 
   useEffect(() => {
     if (pathname === '/' || pathname === '/generate') {
-      setTextColor(generateTextColor(baseColor));
+      setTextColor(baseColor);
     } else {
       setTextColor('#000000');
     }
-  }, [pathname]);
+  }, [pathname, baseColor]);
 
   const onSelectOption = (option: string) => {
     console.log('option: ', option);

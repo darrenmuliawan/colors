@@ -54,7 +54,7 @@ export const GeneratorPage = () => {
   }, []);
 
   return (
-    <div style={{ backgroundColor: 'white' }}>
+    <div>
       <Overview
         baseColor={baseColor}
         generateNewColor={generateNewColor}

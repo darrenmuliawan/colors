@@ -1,6 +1,7 @@
 import { Button, Palette, RGBText } from 'components';
 import { BASE_COLOR, COLOR_BRAND_EXPLANATION } from 'constants';
 import { useGeneratorColor } from 'hooks';
+import { Artpiece } from 'pages/Generator/Artpiece';
 import { generateTextColor, isShadeOf, smoothScroll } from 'utils';
 
 interface OverviewProps {
@@ -10,7 +11,7 @@ interface OverviewProps {
 }
 
 export const Overview = (props: OverviewProps) => {
-  const { baseColor, generateNewColor, cssGradientColors } = props;
+  const { baseColor, generateNewColor } = props;
   const {
     textColor,
     secondaryTextColor,
@@ -18,11 +19,24 @@ export const Overview = (props: OverviewProps) => {
     secondaryButtonColor,
     backgroundColor,
     accentColor,
+    overviewBgColor,
   } = useGeneratorColor();
+  // const overviewBgColor = adjustColorBrightness(
+  //   secondaryButtonColor,
+  //   getColorBrightness(primaryButtonColor) > 0.5 ? -2 : 1
+  // );
 
+  // console.log('getColorBrightness(primaryButtonColor): ', getColorBrightness(primaryButtonColor));
   return (
-    <section className="relative flex flex-col justify-center items-center h-[100vh]" id="overview">
-      <div
+    <section
+      className="relative flex items-center min-h-[100vh] flex-col-reverse xl:flex-row xl:pt-0 pt-[150px]"
+      id="overview"
+      style={{
+        background: overviewBgColor,
+      }}
+    >
+      {/* <img src={Yayoi} alt="yayoi kusama" className="mix-blend-luminosity -z-[100]" /> */}
+      {/* <div
         className="absolute h-full w-full transition-all ease-in duration-500 z-0 opacity-0"
         style={{
           background: cssGradientColors,
@@ -35,39 +49,101 @@ export const Overview = (props: OverviewProps) => {
           background: cssGradientColors,
         }}
         id="bg2"
-      ></div>
-      <div className="mb-4 flex items-center justify-center z-10">
-        <Palette
-          color={baseColor}
+      ></div> */}
+      <div className="xl:pl-10 px-10 xl:pb-0 pb-[100px] xl:justify-start xl:items-start justify-center items-center flex flex-col">
+        <div className="mb-4 flex z-10">
+          {/* <Palette
+          color={secondaryTextColor}
+          size={40}
           withLabel={false}
-          className="rounded-lg mr-2 border-2 border-solid shadow-2xl"
+          className="border-2 border-solid mr-2"
           style={{
             borderColor: generateTextColor(baseColor),
           }}
-          size={40}
+        /> */}
+          <h1
+            className="text-5xl mb-4 z-10"
+            style={{
+              color: primaryButtonColor,
+              // background: cssGradientColors,
+              textDecoration: 'underline',
+              textDecorationColor: accentColor,
+              textDecorationStyle: 'wavy',
+              textUnderlineOffset: 10,
+            }}
+          >
+            {BASE_COLOR[baseColor].name}
+          </h1>
+        </div>
+        <RGBText
+          text={baseColor}
+          color={generateTextColor(overviewBgColor)}
+          className="text-3xl mb-8 z-10 font-normal"
         />
-        <h1
-          className="text-5xl mb-0 z-10"
+        <h2
+          className="text-2xl z-10 w-full xl:w-[50%] text-center xl:text-left mb-10"
           style={{
-            color: generateTextColor(baseColor),
+            color: generateTextColor(overviewBgColor),
           }}
         >
-          {BASE_COLOR[baseColor].name}
-        </h1>
+          {COLOR_BRAND_EXPLANATION[isShadeOf(baseColor)]}
+        </h2>
+        <div>
+          <Button
+            onClick={generateNewColor}
+            className="z-10"
+            style={{
+              backgroundColor: primaryButtonColor,
+            }}
+            shadow
+            outlined
+          >
+            <span
+              className="text-xl font-bold"
+              style={{
+                color: generateTextColor(primaryButtonColor),
+              }}
+              // className="gradient-text text-xl font-bold"
+              // style={{
+              //   background: cssGradientColors,
+              // }}
+            >
+              Press &apos;Space&apos; to generate new color
+            </span>
+          </Button>
+          <Button
+            className="z-10 ml-4"
+            style={{
+              backgroundColor: secondaryButtonColor,
+            }}
+            shadow
+            outlined
+          >
+            <span
+              className="text-xl font-bold"
+              style={{
+                color: generateTextColor(secondaryButtonColor),
+              }}
+              // className="gradient-text text-xl font-bold"
+              // style={{
+              //   background: cssGradientColors,
+              // }}
+            >
+              How does it work?
+            </span>
+          </Button>
+        </div>
       </div>
-      <RGBText
-        text={baseColor}
-        color={generateTextColor(baseColor)}
-        className="text-3xl mb-8 z-10 font-normal"
-      />
-      <h2
-        className="text-2xl z-10 w-[65%] text-center"
-        style={{
-          color: generateTextColor(baseColor),
-        }}
-      >
-        {COLOR_BRAND_EXPLANATION[isShadeOf(baseColor)]}
-      </h2>
+      <div className="w-full h-full flex items-center justify-center pr-10">
+        {/* <div
+          style={{
+            backgroundColor: primaryButtonColor,
+          }}
+        >
+          <img src={Yayoi} alt="yayoi kusama" className="mix-blend-luminosity" />
+        </div> */}
+        <Artpiece />
+      </div>
       <section className="absolute bottom-10 w-full flex justify-between px-10">
         <div className="flex items-center w-full">
           <div className="mr-2">
@@ -155,29 +231,12 @@ export const Overview = (props: OverviewProps) => {
             className="cursor-pointer opacity-50 hover:opacity-100 transition duration-500"
             onClick={() => smoothScroll('explanation')}
           >
-            <p className="text-xl">scroll for details</p>
+            <p className="text-xl" style={{ color: generateTextColor(overviewBgColor) }}>
+              scroll for details
+            </p>
           </button>
         </div>
-        <div className="w-full flex justify-end">
-          <Button
-            onClick={generateNewColor}
-            className="z-10"
-            style={{
-              backgroundColor: generateTextColor(baseColor),
-            }}
-            shadow
-            outlined
-          >
-            <span
-              className="gradient-text text-xl font-bold"
-              style={{
-                background: cssGradientColors,
-              }}
-            >
-              Press &apos;Space&apos; to generate new color
-            </span>
-          </Button>
-        </div>
+        <div className="w-full flex justify-end"></div>
       </section>
     </section>
   );

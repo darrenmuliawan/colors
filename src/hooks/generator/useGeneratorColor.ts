@@ -3,10 +3,12 @@ import {
   generateBase,
   generateComplementary,
   generateNeutral,
-  generateVibrant,
   generateGradient,
   generateHoverColor,
   createLinearGradientCSS,
+  generateSplitComplementary,
+  adjustColorBrightness,
+  getColorBrightness,
 } from 'utils';
 
 // accent color
@@ -29,6 +31,7 @@ const _hoverSecondaryTextColor = atom('#ffffff');
 
 // background color
 const _backgroundColor = atom('#ffffff');
+const _overviewBgColor = atom('#ffffff');
 
 // gradient colors
 // const _gradientColors = atom(['#ffffff']);
@@ -54,6 +57,7 @@ export const useGeneratorColor = () => {
 
   // background color
   const [backgroundColor, setBackgroundColor] = useAtom(_backgroundColor);
+  const [overviewBgColor, setOverviewBgColor] = useAtom(_overviewBgColor);
 
   // gradient colors
   // const [gradientColors, setGradientColors] = useAtom(_gradientColors);
@@ -73,13 +77,18 @@ export const useGeneratorColor = () => {
     setSecondaryButtonColor(secondaryButton);
     setHoverSecondaryButtonColor(generateHoverColor(secondaryButton));
 
-    // accent
-    const accent = generateVibrant(_new);
-    setAccentColor(accent);
-
     // background color
     const backgroundColor = generateNeutral();
     setBackgroundColor(backgroundColor);
+    const overviewBgColor = adjustColorBrightness(
+      secondaryButton,
+      getColorBrightness(_new) > 0.5 ? -2 : 1
+    );
+    setOverviewBgColor(overviewBgColor);
+
+    // accent
+    const accent = generateSplitComplementary(_new)[1];
+    setAccentColor(accent);
 
     // text color
     const textColor = generateComplementary(backgroundColor);
@@ -107,7 +116,9 @@ export const useGeneratorColor = () => {
 
     // gradient color
     // const endColor = analogousAccent[4].hex();
-    const gradientColors = generateGradient(primaryButtonColor, secondaryButton, 2);
+    // const analogous = generateAnalogous(_new, 15, 3);
+    const gradientColors = generateGradient(_new, secondaryButton, 5);
+    // const gradientColors = analogous.map((c) => c.hex());
     const cssGradientColor = createLinearGradientCSS(gradientColors, '45deg');
     setCSSGradientColors(cssGradientColor);
     // setGradientColors(analogousAccent.map((c) => c.hex()));
@@ -129,6 +140,7 @@ export const useGeneratorColor = () => {
     hoverTextColor,
     hoverSecondaryTextColor,
     backgroundColor,
+    overviewBgColor,
     // gradientColors,
     cssGradientColors,
     setBaseColor,

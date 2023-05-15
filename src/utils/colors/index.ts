@@ -12,3 +12,5 @@ export * from './generateNeutral';
 export * from './generateGradient';
 export * from './generateHoverColor';
 export * from './createLinearGradientCSS';
+export * from './adjustColorBrightness';
+export * from './getColorBrightness';
