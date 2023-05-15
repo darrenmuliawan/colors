@@ -1,16 +1,24 @@
 import { Button, Palette, RGBText } from 'components';
 import { BASE_COLOR, COLOR_BRAND_EXPLANATION } from 'constants';
+import { useGeneratorColor } from 'hooks';
 import { generateTextColor, isShadeOf, smoothScroll } from 'utils';
 
 interface OverviewProps {
   baseColor: string;
   generateNewColor: () => void;
   cssGradientColors: string;
-  gradientColors: string[];
 }
 
 export const Overview = (props: OverviewProps) => {
-  const { baseColor, generateNewColor, cssGradientColors, gradientColors } = props;
+  const { baseColor, generateNewColor, cssGradientColors } = props;
+  const {
+    textColor,
+    secondaryTextColor,
+    primaryButtonColor,
+    secondaryButtonColor,
+    backgroundColor,
+    accentColor,
+  } = useGeneratorColor();
 
   return (
     <section className="relative flex flex-col justify-center items-center h-[100vh]" id="overview">
@@ -62,7 +70,73 @@ export const Overview = (props: OverviewProps) => {
       </h2>
       <section className="absolute bottom-10 w-full flex justify-between px-10">
         <div className="flex items-center w-full">
-          {gradientColors.map((gradient, index) => (
+          <div className="mr-2">
+            <Palette
+              color={backgroundColor}
+              size={32}
+              withLabel={false}
+              className="border-2 border-solid"
+              style={{
+                borderColor: generateTextColor(baseColor),
+              }}
+            />
+          </div>
+          <div className="mr-2">
+            <Palette
+              color={textColor}
+              size={32}
+              withLabel={false}
+              className="border-2 border-solid"
+              style={{
+                borderColor: generateTextColor(baseColor),
+              }}
+            />
+          </div>
+          <div className="mr-2">
+            <Palette
+              color={secondaryTextColor}
+              size={32}
+              withLabel={false}
+              className="border-2 border-solid"
+              style={{
+                borderColor: generateTextColor(baseColor),
+              }}
+            />
+          </div>
+          <div className="mr-2">
+            <Palette
+              color={primaryButtonColor}
+              size={32}
+              withLabel={false}
+              className="border-2 border-solid"
+              style={{
+                borderColor: generateTextColor(baseColor),
+              }}
+            />
+          </div>
+          <div className="mr-2">
+            <Palette
+              color={secondaryButtonColor}
+              size={32}
+              withLabel={false}
+              className="border-2 border-solid"
+              style={{
+                borderColor: generateTextColor(baseColor),
+              }}
+            />
+          </div>
+          <div className="mr-2">
+            <Palette
+              color={accentColor}
+              size={32}
+              withLabel={false}
+              className="border-2 border-solid"
+              style={{
+                borderColor: generateTextColor(baseColor),
+              }}
+            />
+          </div>
+          {/* {gradientColors.map((gradient, index) => (
             <div className="mr-2" key={`gradient-${index}`}>
               <Palette
                 color={gradient}
@@ -74,7 +148,7 @@ export const Overview = (props: OverviewProps) => {
                 }}
               />
             </div>
-          ))}
+          ))} */}
         </div>
         <div className="scroll-down w-full flex items-center justify-center">
           <button

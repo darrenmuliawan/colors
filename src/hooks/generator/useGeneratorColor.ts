@@ -1,21 +1,29 @@
 import { atom, useAtom } from 'jotai';
-import { generateAnalogous, generateBase, generateComplementary } from 'utils';
-import { createLinearGradientCSS } from 'utils/colors/createLinearGradientCSS';
-import { generateBackgroundColor } from 'utils/colors/generateBackgroundColor';
-import { generateGradient } from 'utils/colors/generateGradient';
-import { generateHoverColor } from 'utils/colors/generateHoverColor';
-import { generateTertiaryTextColor } from 'utils/colors/generateTertiaryTextColor';
+import {
+  generateBase,
+  generateComplementary,
+  generateNeutral,
+  generateVibrant,
+  generateGradient,
+  generateHoverColor,
+  createLinearGradientCSS,
+} from 'utils';
 
 // accent color
 const _baseColor = atom('#0F4C81');
-const _secondaryAccentColor = atom('#ffffff');
-const _hoverAccentColor = atom('#ffffff');
-const _hoverSecondaryAccentColor = atom('#ffffff');
+const _primaryButtonColor = atom('#0F4C81');
+const _secondaryButtonColor = atom('#FFFFFF');
+const _hoverPrimaryButtonColor = atom('#FFFFFF');
+const _hoverSecondaryButtonColor = atom('#FFFFFF');
+const _accentColor = atom('#FFFFFF');
+// const _secondaryAccentColor = atom('#ffffff');
+// const _hoverAccentColor = atom('#ffffff');
+// const _hoverSecondaryAccentColor = atom('#ffffff');
 
 // text color
 const _textColor = atom('#ffffff');
 const _secondaryTextColor = atom('#ffffff');
-const _tertiaryTextColor = atom('#ffffff');
+// const _tertiaryTextColor = atom('#ffffff');
 const _hoverTextColor = atom('#ffffff');
 const _hoverSecondaryTextColor = atom('#ffffff');
 
@@ -23,21 +31,24 @@ const _hoverSecondaryTextColor = atom('#ffffff');
 const _backgroundColor = atom('#ffffff');
 
 // gradient colors
-const _gradientColors = atom(['#ffffff']);
+// const _gradientColors = atom(['#ffffff']);
 const _cssGradientColors = atom('#ffffff');
 
 export const useGeneratorColor = () => {
+  // base & buttons
   const [baseColor, setBaseColor] = useAtom(_baseColor);
-  const [secondaryAccentColor, setSecondaryAccentColor] = useAtom(_secondaryAccentColor);
-  const [hoverAccentColor, setHoverAccentColor] = useAtom(_hoverAccentColor);
-  const [hoverSecondaryAccentColor, setHoverSecondaryAccentColor] = useAtom(
-    _hoverSecondaryAccentColor
+  const [primaryButtonColor, setPrimaryButtonColor] = useAtom(_primaryButtonColor);
+  const [hoverPrimaryButtonColor, setHoverPrimaryButtonColor] = useAtom(_hoverPrimaryButtonColor);
+  const [secondaryButtonColor, setSecondaryButtonColor] = useAtom(_secondaryButtonColor);
+  const [hoverSecondaryButtonColor, setHoverSecondaryButtonColor] = useAtom(
+    _hoverSecondaryButtonColor
   );
+  const [accentColor, setAccentColor] = useAtom(_accentColor);
 
   // text color
   const [textColor, setTextColor] = useAtom(_textColor);
   const [secondaryTextColor, setSecondaryTextColor] = useAtom(_secondaryTextColor);
-  const [tertiaryTextColor, setTertiaryTextColor] = useAtom(_tertiaryTextColor);
+  // const [tertiaryTextColor, setTertiaryTextColor] = useAtom(_tertiaryTextColor);
   const [hoverTextColor, setHoverTextColor] = useAtom(_hoverTextColor);
   const [hoverSecondaryTextColor, setHoverSecondaryTextColor] = useAtom(_hoverSecondaryTextColor);
 
@@ -45,7 +56,7 @@ export const useGeneratorColor = () => {
   const [backgroundColor, setBackgroundColor] = useAtom(_backgroundColor);
 
   // gradient colors
-  const [gradientColors, setGradientColors] = useAtom(_gradientColors);
+  // const [gradientColors, setGradientColors] = useAtom(_gradientColors);
   const [cssGradientColors, setCSSGradientColors] = useAtom(_cssGradientColors);
 
   const generateNewColor = () => {
@@ -53,50 +64,72 @@ export const useGeneratorColor = () => {
     const _new = generateBase();
     setBaseColor(_new);
 
-    // secondary accent
-    const analogousAccent = generateAnalogous(_new, 30, 5);
-    const secondaryAccent = analogousAccent[0].hex();
-    setSecondaryAccentColor(secondaryAccent);
-    const hoverAccent = generateHoverColor(_new);
-    setHoverAccentColor(hoverAccent);
-    const hoverSecondaryAccentColor = generateHoverColor(secondaryAccent);
-    setHoverSecondaryAccentColor(hoverSecondaryAccentColor);
+    // primary button
+    setPrimaryButtonColor(_new);
+    setHoverPrimaryButtonColor(generateHoverColor(_new));
+
+    // secondary button
+    const secondaryButton = generateComplementary(_new);
+    setSecondaryButtonColor(secondaryButton);
+    setHoverSecondaryButtonColor(generateHoverColor(secondaryButton));
+
+    // accent
+    const accent = generateVibrant(_new);
+    setAccentColor(accent);
+
+    // background color
+    const backgroundColor = generateNeutral();
+    setBackgroundColor(backgroundColor);
 
     // text color
-    const textColor = generateComplementary(_new);
+    const textColor = generateComplementary(backgroundColor);
     setTextColor(textColor);
-    const secondaryTextColor = generateComplementary(secondaryAccent);
+    const secondaryTextColor = generateComplementary(primaryButtonColor);
     setSecondaryTextColor(secondaryTextColor);
-    const tertiaryTextColor = generateTertiaryTextColor(_new);
-    setTertiaryTextColor(tertiaryTextColor);
+    // const tertiaryTextColor = generateTertiaryTextColor(_new);
+    // setTertiaryTextColor(tertiaryTextColor);
     const hoverTextColor = generateHoverColor(textColor);
     setHoverTextColor(hoverTextColor);
     const secondaryHoverTextColor = generateHoverColor(secondaryTextColor);
     setHoverSecondaryTextColor(secondaryHoverTextColor);
 
+    // secondary accent
+    // const analogousAccent = generateAnalogous(_new, 30, 5);
+    // const secondaryAccent = analogousAccent[0].hex();
+    // setSecondaryAccentColor(secondaryAccent);
+    // const hoverAccent = generateHoverColor(_new);
+    // setHoverAccentColor(hoverAccent);
+    // const hoverSecondaryAccentColor = generateHoverColor(secondaryAccent);
+    // setHoverSecondaryAccentColor(hoverSecondaryAccentColor);
+
     // background color
-    setBackgroundColor(generateBackgroundColor(_new));
+    // setBackgroundColor(generateBackgroundColor(_new));
 
     // gradient color
-    const endColor = analogousAccent[4].hex();
-    const gradientColors = generateGradient(_new, endColor, 5);
+    // const endColor = analogousAccent[4].hex();
+    const gradientColors = generateGradient(primaryButtonColor, secondaryButton, 2);
     const cssGradientColor = createLinearGradientCSS(gradientColors, '45deg');
     setCSSGradientColors(cssGradientColor);
-    setGradientColors(analogousAccent.map((c) => c.hex()));
+    // setGradientColors(analogousAccent.map((c) => c.hex()));
   };
 
   return {
     baseColor,
-    secondaryAccentColor,
-    hoverAccentColor,
-    hoverSecondaryAccentColor,
+    primaryButtonColor,
+    hoverPrimaryButtonColor,
+    secondaryButtonColor,
+    hoverSecondaryButtonColor,
+    accentColor,
+    // secondaryAccentColor,
+    // hoverAccentColor,
+    // hoverSecondaryAccentColor,
     textColor,
     secondaryTextColor,
-    tertiaryTextColor,
+    // tertiaryTextColor,
     hoverTextColor,
     hoverSecondaryTextColor,
     backgroundColor,
-    gradientColors,
+    // gradientColors,
     cssGradientColors,
     setBaseColor,
     generateNewColor,

@@ -7,16 +7,20 @@ import { useGeneratorColor } from 'hooks';
 export const GeneratorPage = () => {
   const {
     baseColor,
-    secondaryAccentColor,
-    hoverAccentColor,
-    hoverSecondaryAccentColor,
+    primaryButtonColor,
+    hoverPrimaryButtonColor,
+    secondaryButtonColor,
+    hoverSecondaryButtonColor,
+    // secondaryAccentColor,
+    // hoverAccentColor,
+    // hoverSecondaryAccentColor,
     textColor,
     secondaryTextColor,
-    tertiaryTextColor,
+    // tertiaryTextColor,
     hoverTextColor,
     hoverSecondaryTextColor,
     backgroundColor,
-    gradientColors,
+    // gradientColors,
     cssGradientColors,
     generateNewColor,
   } = useGeneratorColor();
@@ -54,7 +58,7 @@ export const GeneratorPage = () => {
       <Overview
         baseColor={baseColor}
         generateNewColor={generateNewColor}
-        gradientColors={gradientColors}
+        // gradientColors={gradientColors}
         cssGradientColors={cssGradientColors}
       />
       <Container id="explanation">
@@ -73,16 +77,16 @@ export const GeneratorPage = () => {
             </code>
             <div className="flex items-center mt-4">
               <div className="mr-2">
-                <Palette color={baseColor} label="Primary Accent" />
+                <Palette color={primaryButtonColor} label="Primary Button" />
               </div>
               <div className="mr-2">
-                <Palette color={hoverAccentColor} label="Hover P. Accent" />
+                <Palette color={hoverPrimaryButtonColor} label="Hover P. Button" />
               </div>
               <div className="mr-2">
-                <Palette color={secondaryAccentColor} label="Secondary Accent" />
+                <Palette color={secondaryButtonColor} label="Secondary Button" />
               </div>
               <div className="mr-2">
-                <Palette color={hoverSecondaryAccentColor} label="Hover S. Accent" />
+                <Palette color={hoverSecondaryButtonColor} label="Hover S. Button" />
               </div>
             </div>
           </section>
@@ -109,9 +113,9 @@ export const GeneratorPage = () => {
               <div className="mr-2">
                 <Palette color={hoverSecondaryTextColor} label="Hover S. Text" />
               </div>
-              <div className="mr-2">
+              {/* <div className="mr-2">
                 <Palette color={tertiaryTextColor} label="Tertiary Text" />
-              </div>
+              </div> */}
             </div>
           </section>
           <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">

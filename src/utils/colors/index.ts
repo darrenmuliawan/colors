@@ -7,3 +7,8 @@ export * from './generateMonochromatic';
 export * from './generateSplitComplementary';
 export * from './generateTetradic';
 export * from './generateTriadic';
+export * from './generateVibrant';
+export * from './generateNeutral';
+export * from './generateGradient';
+export * from './generateHoverColor';
+export * from './createLinearGradientCSS';
