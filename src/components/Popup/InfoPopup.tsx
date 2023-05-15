@@ -1,10 +1,12 @@
 import CheckmarkIcon from 'assets/svg/checkmark.svg';
-import { useInfoPopup } from 'hooks';
+import ErrorIcon from 'assets/svg/error.svg';
+import InfoIcon from 'assets/svg/info.svg';
+import { INFO_MESSAGE_TYPE, useInfoPopup } from 'hooks';
 import { useEffect, useRef, useState } from 'react';
-import { classNames } from 'utils';
+import { classNames } from '../../utils';
 
 export const InfoPopup = () => {
-  const { isOpen, message, hidePopup, triggered } = useInfoPopup();
+  const { isOpen, message, hidePopup, triggered, type } = useInfoPopup();
   const closeTimerRef = useRef<number>();
   const [show, setShow] = useState(false);
 
@@ -22,6 +24,16 @@ export const InfoPopup = () => {
     }
   }, [isOpen, hidePopup, triggered]);
 
+  const getIcon = () => {
+    if (type === INFO_MESSAGE_TYPE.SUCCESS) {
+      return <img src={CheckmarkIcon} alt="success" className="mr-3 h-[30px]" />;
+    } else if (type === INFO_MESSAGE_TYPE.ERROR) {
+      return <img src={ErrorIcon} alt="error" className="mr-3 h-[30px]" />;
+    } else {
+      return <img src={InfoIcon} alt="info" className="mr-3 h-[30px]" />;
+    }
+  };
+
   return (
     <div
       className={classNames(
@@ -29,8 +41,8 @@ export const InfoPopup = () => {
         show ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-0'
       )}
     >
-      <img src={CheckmarkIcon} alt="copied to clipboard" className="mr-3 h-[30px]" />
-      <p>{message}</p>
+      {getIcon()}
+      <p className="text-black text-lg">{message}</p>
     </div>
   );
 };
