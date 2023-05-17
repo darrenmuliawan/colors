@@ -7,11 +7,12 @@ interface PaletteProps {
   label?: string;
   size?: number | 'auto';
   height?: number;
-  width?: number;
+  width?: number | 'full';
   withLabel?: boolean;
   className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
+  mode?: 'hex' | 'hsl';
 }
 
 export const Palette = (props: PaletteProps) => {
@@ -25,6 +26,7 @@ export const Palette = (props: PaletteProps) => {
     className = '',
     style,
     onClick,
+    mode,
   } = props;
 
   return (
@@ -37,12 +39,12 @@ export const Palette = (props: PaletteProps) => {
       style={{
         backgroundColor: color,
         height: size !== 'auto' ? size : height,
-        width: size !== 'auto' ? size : width,
+        width: size !== 'auto' ? size : width === 'full' ? '100%' : width,
         ...style,
       }}
       onClick={onClick}
     >
-      {withLabel && <RGBText text={color} color={generateTextColor(color)} />}
+      {withLabel && <RGBText text={color} color={generateTextColor(color)} mode={mode} />}
       <p
         className="mb-4 text-md font-bold"
         style={{

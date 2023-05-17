@@ -1,29 +1,12 @@
-import { Container, Palette } from 'components';
+import { Container } from 'components';
 import { useEffect } from 'react';
 import { Overview } from 'ui';
 import { CSSGenerator } from './CSSGenerator';
 import { useGeneratorColor } from 'hooks';
+import { GeneratorExplanation } from './GeneratorExplanation';
 
 export const GeneratorPage = () => {
-  const {
-    baseColor,
-    primaryButtonColor,
-    hoverPrimaryButtonColor,
-    secondaryButtonColor,
-    hoverSecondaryButtonColor,
-    // secondaryAccentColor,
-    // hoverAccentColor,
-    // hoverSecondaryAccentColor,
-    textColor,
-    secondaryTextColor,
-    // tertiaryTextColor,
-    hoverTextColor,
-    hoverSecondaryTextColor,
-    backgroundColor,
-    // gradientColors,
-    cssGradientColors,
-    generateNewColor,
-  } = useGeneratorColor();
+  const { baseColor, cssGradientColors, generateNewColor } = useGeneratorColor();
 
   useEffect(() => {
     // add listener for spacebar
@@ -63,8 +46,9 @@ export const GeneratorPage = () => {
       />
       <Container id="explanation">
         <div className="p-10">
+          <GeneratorExplanation />
           <CSSGenerator />
-          <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
+          {/* <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
             <h2 className="text-primary text-5xl underline-offset-8 underline mb-8">Accent</h2>
             <p className="text-2xl mb-4">
               This color is used to emphasize specific elements, such as buttons, links, or
@@ -113,9 +97,6 @@ export const GeneratorPage = () => {
               <div className="mr-2">
                 <Palette color={hoverSecondaryTextColor} label="Hover S. Text" />
               </div>
-              {/* <div className="mr-2">
-                <Palette color={tertiaryTextColor} label="Tertiary Text" />
-              </div> */}
             </div>
           </section>
           <section className="mb-10 border-b-4 border-dashed border-primary border-0 pb-10">
@@ -132,7 +113,7 @@ export const GeneratorPage = () => {
                 <Palette color={backgroundColor} />
               </div>
             </div>
-          </section>
+          </section> */}
         </div>
       </Container>
     </div>

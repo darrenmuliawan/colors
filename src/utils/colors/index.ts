@@ -14,3 +14,4 @@ export * from './generateHoverColor';
 export * from './createLinearGradientCSS';
 export * from './adjustColorBrightness';
 export * from './getColorBrightness';
+export * from './formatHSL';

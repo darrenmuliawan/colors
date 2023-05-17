@@ -1,3 +1,4 @@
+import chroma from 'chroma-js';
 import { atom, useAtom } from 'jotai';
 import {
   generateBase,
@@ -18,9 +19,12 @@ const _secondaryButtonColor = atom('#FFFFFF');
 const _hoverPrimaryButtonColor = atom('#FFFFFF');
 const _hoverSecondaryButtonColor = atom('#FFFFFF');
 const _accentColor = atom('#FFFFFF');
-// const _secondaryAccentColor = atom('#ffffff');
-// const _hoverAccentColor = atom('#ffffff');
-// const _hoverSecondaryAccentColor = atom('#ffffff');
+
+// supporting colors
+const _successColor = atom('#ffffff');
+const _errorColor = atom('#ffffff');
+const _warningColor = atom('#ffffff');
+const _infoColor = atom('#ffffff');
 
 // text color
 const _textColor = atom('#ffffff');
@@ -32,6 +36,9 @@ const _hoverSecondaryTextColor = atom('#ffffff');
 // background color
 const _backgroundColor = atom('#ffffff');
 const _overviewBgColor = atom('#ffffff');
+
+// neutral color
+const _neutralColors = atom<string[]>([]);
 
 // gradient colors
 // const _gradientColors = atom(['#ffffff']);
@@ -47,6 +54,15 @@ export const useGeneratorColor = () => {
     _hoverSecondaryButtonColor
   );
   const [accentColor, setAccentColor] = useAtom(_accentColor);
+
+  // supporting colors
+  const [successColor, setSuccessColor] = useAtom(_successColor);
+  const [errorColor, setErrorColor] = useAtom(_errorColor);
+  const [warningColor, setWarningColor] = useAtom(_warningColor);
+  const [infoColor, setInfoColor] = useAtom(_infoColor);
+
+  // neutral colors
+  const [neutralColors, setNeutralColors] = useAtom(_neutralColors);
 
   // text color
   const [textColor, setTextColor] = useAtom(_textColor);
@@ -90,6 +106,27 @@ export const useGeneratorColor = () => {
     const accent = generateSplitComplementary(_new)[1];
     setAccentColor(accent);
 
+    // supporting colors
+    const mainHSL = chroma(_new).hsl();
+    const saturation = Math.max(0.8, mainHSL[1]);
+    const lightness = Math.min(0.6, Math.max(0.4, mainHSL[2]));
+    const successColor = chroma(120, saturation, lightness, 'hsl').hex();
+    setSuccessColor(successColor);
+    const errorColor = chroma(0, saturation, lightness, 'hsl').hex();
+    setErrorColor(errorColor);
+    const warningColor = chroma(38.8, saturation, lightness, 'hsl').hex();
+    setWarningColor(warningColor);
+    const infoColor = chroma(240, saturation, lightness, 'hsl').hex();
+    setInfoColor(infoColor);
+
+    // neutrals
+    const midGray = chroma(_new).desaturate(2.5).luminance(0.5).hex();
+    const light = chroma(_new).desaturate(2.5).luminance(0.99).hex();
+    const dark = chroma(_new).desaturate(2.5).luminance(0.01).hex();
+    const neutrals = chroma.scale([light, midGray, dark]).colors(9);
+    // const midGray = '#5B6781';
+    setNeutralColors(neutrals);
+
     // text color
     const textColor = generateComplementary(backgroundColor);
     setTextColor(textColor);
@@ -103,16 +140,6 @@ export const useGeneratorColor = () => {
     setHoverSecondaryTextColor(secondaryHoverTextColor);
 
     // secondary accent
-    // const analogousAccent = generateAnalogous(_new, 30, 5);
-    // const secondaryAccent = analogousAccent[0].hex();
-    // setSecondaryAccentColor(secondaryAccent);
-    // const hoverAccent = generateHoverColor(_new);
-    // setHoverAccentColor(hoverAccent);
-    // const hoverSecondaryAccentColor = generateHoverColor(secondaryAccent);
-    // setHoverSecondaryAccentColor(hoverSecondaryAccentColor);
-
-    // background color
-    // setBackgroundColor(generateBackgroundColor(_new));
 
     // gradient color
     // const endColor = analogousAccent[4].hex();
@@ -134,6 +161,11 @@ export const useGeneratorColor = () => {
     // secondaryAccentColor,
     // hoverAccentColor,
     // hoverSecondaryAccentColor,
+    successColor,
+    errorColor,
+    warningColor,
+    infoColor,
+    neutralColors,
     textColor,
     secondaryTextColor,
     // tertiaryTextColor,

@@ -7,12 +7,13 @@ import { classNames } from 'utils';
 export const CSSGenerator = () => {
   const {
     baseColor,
-    secondaryAccentColor,
-    hoverAccentColor,
-    hoverSecondaryAccentColor,
     textColor,
+    primaryButtonColor,
+    hoverPrimaryButtonColor,
+    secondaryButtonColor,
+    hoverSecondaryButtonColor,
+    backgroundColor,
     secondaryTextColor,
-    tertiaryTextColor,
     hoverTextColor,
     hoverSecondaryTextColor,
     cssGradientColors,
@@ -31,21 +32,21 @@ export const CSSGenerator = () => {
     setCSS(
       `:root {
   --primary: ${baseColor};
-  --primary-hover: ${hoverAccentColor};
+  --primary-hover: ${hoverPrimaryButtonColor};
   --text-primary: ${textColor};
   --text-primary-hover: ${hoverTextColor};
-  --secondary: ${secondaryAccentColor};
-  --secondary-hover: ${hoverSecondaryAccentColor};
+  --secondary: ${secondaryButtonColor};
+  --secondary-hover: ${hoverSecondaryButtonColor};
   --text-secondary: ${secondaryTextColor};
   --text-secondary-hover: ${hoverSecondaryTextColor};
-  --tertiary: ${tertiaryTextColor};
-  --disabled: ${tertiaryTextColor};
+  --disabled: #FFFFFF;
   --error: #FF0000;
   --success: #00FF00;
   --info: #1E90FF;
   --neutral: #F3F4F6;
   --neutral-dark: #000000;
   --neutral-light: #FFFFFF;
+  --background: ${backgroundColor};
 }
 
 /* Primary */
@@ -127,21 +128,21 @@ export const CSSGenerator = () => {
     extend: {
       colors: {
         primary: '${baseColor}',
-        'primary-hover': '${hoverAccentColor}',
-        secondary: '${secondaryAccentColor}',
-        'secondary-hover': '${hoverSecondaryAccentColor}',
+        'primary-hover': '${primaryButtonColor}',
+        secondary: '${secondaryButtonColor}',
+        'secondary-hover': '${hoverSecondaryButtonColor}',
         'text-primary': '${textColor}',
         'text-primary-hover': '${hoverTextColor}',
         'text-secondary': '${secondaryTextColor}',
         'text-secondary-hover': '${hoverSecondaryTextColor}',
-        'text-tertiary': '${tertiaryTextColor}',
-        disabled: '${tertiaryTextColor}',
+        disabled: '#FFFFFF',
         error: '#FF0000',
         success: '#00FF00',
         info: '#1E90FF',
         neutral: '#F3F4F6',
         'neutral-dark': '#000000',
         'neutral-light': '#FFFFFF',
+        background: ${backgroundColor}
       },
     },
   },
@@ -159,7 +160,9 @@ export const CSSGenerator = () => {
 
   return (
     <section className="mb-10">
-      <h2 className="text-5xl text-primary underline-offset-8 underline mb-8">CSS</h2>
+      <h1 className="text-5xl text-primary underline-offset-8 underline mb-8">
+        This is what you came for
+      </h1>
       <div className="mb-4">
         <Button
           type="text"
