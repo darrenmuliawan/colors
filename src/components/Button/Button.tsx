@@ -11,6 +11,8 @@ interface ButtonProps {
   shadow?: boolean;
   outlined?: boolean;
   ref?: React.RefObject<HTMLButtonElement>;
+  tooltipTitle?: string;
+  tooltipId?: string;
 }
 
 export const Button = (props: ButtonProps) => {
@@ -25,6 +27,8 @@ export const Button = (props: ButtonProps) => {
     shadow = false,
     outlined = false,
     ref,
+    tooltipTitle,
+    tooltipId,
   } = props;
 
   return (
@@ -51,6 +55,8 @@ export const Button = (props: ButtonProps) => {
       style={style}
       onClick={onClick}
       disabled={disabled}
+      data-tooltip-id={tooltipId}
+      data-tooltip-content={tooltipTitle}
     >
       {children}
     </button>

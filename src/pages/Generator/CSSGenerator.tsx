@@ -159,15 +159,12 @@ export const CSSGenerator = () => {
   };
 
   return (
-    <section className="mb-10">
-      <h1 className="text-5xl text-primary underline-offset-8 underline mb-8">
-        This is what you came for
-      </h1>
-      <div className="mb-4">
+    <section className="mb-0">
+      <div className="mb-4 flex justify-center">
         <Button
           type="text"
           className={classNames(
-            'mr-3 py-1 px-4 text-lg',
+            'mr-3 py-4 px-8 text-5xl',
             selectedType === 'css'
               ? 'bg-secondary hover:bg-secondary text-text-secondary hover:text-text-secondary-hover'
               : ''
@@ -179,7 +176,7 @@ export const CSSGenerator = () => {
         <Button
           type="text"
           className={classNames(
-            'mr-3 py-1 px-4 text-lg',
+            'mr-3 py-4 px-8 text-5xl',
             selectedType === 'tailwindcss'
               ? 'bg-secondary hover:bg-secondary text-text-secondary hover:text-text-secondary-hover'
               : ''

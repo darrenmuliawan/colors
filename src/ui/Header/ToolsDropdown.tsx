@@ -15,15 +15,15 @@ const ToolsOption = (props: ToolOptionProps) => {
   const getTitle = () => {
     if (option === 'generator') {
       return 'Palette Generator';
-    } else if (option === 'wallpaper') {
-      return 'Wallpaper';
+    } else if (option === 'colors') {
+      return 'Colors';
     }
   };
 
   const getDescription = () => {
     if (option === 'generator') {
       return 'Generate beautiful color palettes in seconds';
-    } else if (option === 'wallpaper') {
+    } else if (option === 'colors') {
       return 'Explore colors and create customized wallpapers';
     }
   };
@@ -31,7 +31,7 @@ const ToolsOption = (props: ToolOptionProps) => {
   const getIcon = () => {
     if (option === 'generator') {
       return '';
-    } else if (option === 'wallpaper') {
+    } else if (option === 'colors') {
       return <Palette color={baseColor} size={40} withLabel={false} />;
     }
   };
@@ -60,7 +60,7 @@ export const ToolsDropdown = (props: ToolsDropdownProps) => {
   const { stayOpenRef } = props;
   const { baseColor } = useGeneratorColor();
 
-  const options = ['generator', 'wallpaper'];
+  const options = ['generator', 'colors'];
   const [open, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 

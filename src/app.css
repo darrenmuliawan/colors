@@ -101,3 +101,9 @@
   transition-delay: 0.2s;
   transition-timing-function: linear;
 }
+
+*::-webkit-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none;
+}

@@ -1,5 +1,4 @@
 import Logo from 'assets/logo.png';
-import { Button } from 'components';
 import { ToolsDropdown } from './ToolsDropdown';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
@@ -32,9 +31,9 @@ export const Header = () => {
       </Link>
       <div className="flex items-center pl-10" ref={headerRef}>
         <ToolsDropdown stayOpenRef={headerRef} />
-        <Button className="rounded-full text-2xl group" type="secondary" shadow outlined>
+        {/* <Button className="rounded-full text-2xl group" type="secondary" shadow outlined>
           <p className="transition duration-300">coming soon &#128064;</p>
-        </Button>
+        </Button> */}
       </div>
     </header>
   );

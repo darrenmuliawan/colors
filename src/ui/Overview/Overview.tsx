@@ -1,8 +1,9 @@
 import { Button, Palette, RGBText } from 'components';
 import { BASE_COLOR, COLOR_BRAND_EXPLANATION } from 'constants';
 import { useGeneratorColor } from 'hooks';
-import { Artpiece } from 'pages/Generator/Artpiece';
-import { generateTextColor, isShadeOf, smoothScroll } from 'utils';
+import { generateTextColor, isShadeOf, smoothScroll, smoothScrollToDownloadCSS } from 'utils';
+import Random from 'assets/svg/random.svg';
+import { Tooltip } from 'react-tooltip';
 
 interface OverviewProps {
   baseColor: string;
@@ -29,7 +30,7 @@ export const Overview = (props: OverviewProps) => {
   // console.log('getColorBrightness(primaryButtonColor): ', getColorBrightness(primaryButtonColor));
   return (
     <section
-      className="relative flex items-center min-h-[100vh] flex-col-reverse xl:flex-row xl:pt-0 pt-[150px]"
+      className="relative flex items-center min-h-[100vh] xl:pt-0 pt-[150px]"
       id="overview"
       style={{
         background: overviewBgColor,
@@ -50,9 +51,10 @@ export const Overview = (props: OverviewProps) => {
         }}
         id="bg2"
       ></div> */}
-      <div className="xl:pl-10 px-10 xl:pb-0 pb-[100px] xl:justify-start xl:items-start justify-center items-center flex flex-col">
-        <div className="mb-4 flex z-10">
-          {/* <Palette
+      <div className="xl:pl-10 px-10 xl:pb-0 pb-[100px]  justify-center items-center flex flex-col">
+        <div className="max-w-[66%]">
+          <div className="mb-4 flex z-10">
+            {/* <Palette
           color={secondaryTextColor}
           size={40}
           withLabel={false}
@@ -61,89 +63,105 @@ export const Overview = (props: OverviewProps) => {
             borderColor: generateTextColor(baseColor),
           }}
         /> */}
-          <h1
-            className="text-5xl mb-4 z-10"
-            style={{
-              color: primaryButtonColor,
-              // background: cssGradientColors,
-              textDecoration: 'underline',
-              textDecorationColor: accentColor,
-              textDecorationStyle: 'wavy',
-              textUnderlineOffset: 10,
-            }}
-          >
-            {BASE_COLOR[baseColor].name}
-          </h1>
-        </div>
-        <RGBText
-          text={baseColor}
-          color={generateTextColor(overviewBgColor)}
-          className="text-3xl mb-8 z-10 font-normal"
-        />
-        <h2
-          className="text-2xl z-10 w-full xl:w-[50%] text-center xl:text-left mb-10"
-          style={{
-            color: generateTextColor(overviewBgColor),
-          }}
-        >
-          {COLOR_BRAND_EXPLANATION[isShadeOf(baseColor)]}
-        </h2>
-        <div>
-          <Button
-            onClick={generateNewColor}
-            className="z-10"
-            style={{
-              backgroundColor: primaryButtonColor,
-            }}
-            shadow
-            outlined
-          >
-            <span
-              className="text-xl font-bold"
+            <h1
+              className="text-8xl mb-4 z-10"
               style={{
-                color: generateTextColor(primaryButtonColor),
+                color: primaryButtonColor,
+                // background: cssGradientColors,
+                textDecoration: 'underline',
+                textDecorationColor: accentColor,
+                textDecorationStyle: 'wavy',
+                textUnderlineOffset: 10,
               }}
-              // className="gradient-text text-xl font-bold"
-              // style={{
-              //   background: cssGradientColors,
-              // }}
             >
-              Press &apos;Space&apos; to generate new color
-            </span>
-          </Button>
-          <Button
-            className="z-10 ml-4"
+              {BASE_COLOR[baseColor].name}
+            </h1>
+          </div>
+          <RGBText
+            text={baseColor}
+            color={generateTextColor(overviewBgColor)}
+            className="text-5xl mb-8 z-10 font-normal"
+          />
+          <h2
+            className="text-2xl z-10 w-full text-left mb-10"
             style={{
-              backgroundColor: secondaryButtonColor,
+              color: generateTextColor(overviewBgColor),
             }}
-            shadow
-            outlined
           >
-            <span
-              className="text-xl font-bold"
+            {COLOR_BRAND_EXPLANATION[isShadeOf(baseColor)]}
+          </h2>
+          <div className="flex">
+            <Button
+              onClick={smoothScrollToDownloadCSS}
+              className="z-10"
               style={{
-                color: generateTextColor(secondaryButtonColor),
+                backgroundColor: primaryButtonColor,
               }}
-              // className="gradient-text text-xl font-bold"
-              // style={{
-              //   background: cssGradientColors,
-              // }}
+              shadow
+              outlined
             >
-              How does it work?
-            </span>
-          </Button>
+              <span
+                className="text-2xl font-bold"
+                style={{
+                  color: generateTextColor(primaryButtonColor),
+                }}
+                // className="gradient-text text-xl font-bold"
+                // style={{
+                //   background: cssGradientColors,
+                // }}
+              >
+                Download CSS
+              </span>
+            </Button>
+            <Button
+              className="z-10 ml-4"
+              style={{
+                backgroundColor: secondaryButtonColor,
+              }}
+              shadow
+              outlined
+              onClick={() => smoothScroll('explanation')}
+            >
+              <span
+                className="text-2xl font-bold"
+                style={{
+                  color: generateTextColor(secondaryButtonColor),
+                }}
+                // className="gradient-text text-xl font-bold"
+                // style={{
+                //   background: cssGradientColors,
+                // }}
+              >
+                How does it work?
+              </span>
+            </Button>
+            <Button
+              className="z-10 ml-4"
+              style={{
+                backgroundColor: accentColor,
+              }}
+              shadow
+              outlined
+              onClick={generateNewColor}
+              tooltipTitle="Press space to generate new color!"
+              tooltipId="random-tooltip"
+            >
+              <img src={Random} alt="press space to generate new color" height={28} />
+            </Button>
+            <Tooltip id={'random-tooltip'} />
+          </div>
         </div>
       </div>
-      <div className="w-full h-full flex items-center justify-center pr-10">
-        {/* <div
+      {/* <div className="w-full h-full flex items-center justify-center pr-10">
+        <div
           style={{
             backgroundColor: primaryButtonColor,
           }}
         >
           <img src={Yayoi} alt="yayoi kusama" className="mix-blend-luminosity" />
-        </div> */}
+        </div>
         <Artpiece />
-      </div>
+      </div> */}
       <section className="absolute bottom-10 w-full flex justify-between px-10">
         <div className="flex items-center w-full">
           <div className="mr-2">

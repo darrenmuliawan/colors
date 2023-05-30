@@ -7,3 +7,5 @@ export * from './Popup';
 export * from './CodeBlock';
 export * from './HelpOverlay';
 export * from './ColorPicker';
+export * from './ScrollTransitionViews';
+export * from './Animated';
