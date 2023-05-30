@@ -3,6 +3,7 @@ import { useGeneratorColor } from 'hooks';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSGenerator } from './CSSGenerator';
+import { Footer } from 'ui';
 
 export const GeneratorExplanation = () => {
   const [step, setStep] = useState(0);
@@ -515,6 +516,7 @@ export const GeneratorExplanation = () => {
             </AnimatedDiv>
           </div>
         </div>
+        <Footer />
       </div>
     );
   };
