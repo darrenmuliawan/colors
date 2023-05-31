@@ -22,49 +22,20 @@ export const Overview = (props: OverviewProps) => {
     accentColor,
     overviewBgColor,
   } = useGeneratorColor();
-  // const overviewBgColor = adjustColorBrightness(
-  //   secondaryButtonColor,
-  //   getColorBrightness(primaryButtonColor) > 0.5 ? -2 : 1
-  // );
 
-  // console.log('getColorBrightness(primaryButtonColor): ', getColorBrightness(primaryButtonColor));
   return (
     <section
-      className="relative flex items-center min-h-[100vh] xl:pt-0 pt-[150px]"
+      className="relative flex items-center min-h-[100vh] xl:pt-0 pt-[40px]"
       id="overview"
       style={{
         background: overviewBgColor,
       }}
     >
-      {/* <img src={Yayoi} alt="yayoi kusama" className="mix-blend-luminosity -z-[100]" /> */}
-      {/* <div
-        className="absolute h-full w-full transition-all ease-in duration-500 z-0 opacity-0"
-        style={{
-          background: cssGradientColors,
-        }}
-        id="bg1"
-      ></div>
-      <div
-        className="absolute h-full w-full transition-all ease-in duration-500 z-0 opacity-100"
-        style={{
-          background: cssGradientColors,
-        }}
-        id="bg2"
-      ></div> */}
       <div className="xl:pl-10 px-10 xl:pb-0 pb-[100px]  justify-center items-center flex flex-col">
-        <div className="max-w-[66%]">
-          <div className="mb-4 flex z-10">
-            {/* <Palette
-          color={secondaryTextColor}
-          size={40}
-          withLabel={false}
-          className="border-2 border-solid mr-2"
-          style={{
-            borderColor: generateTextColor(baseColor),
-          }}
-        /> */}
+        <div className="lg:max-w-[66%]">
+          <div className="mb-4 flex ">
             <h1
-              className="text-8xl mb-4 z-10"
+              className="text-4xl lg:text-8xl lg:mb-4 mb-2 "
               style={{
                 color: primaryButtonColor,
                 // background: cssGradientColors,
@@ -80,20 +51,20 @@ export const Overview = (props: OverviewProps) => {
           <RGBText
             text={baseColor}
             color={generateTextColor(overviewBgColor)}
-            className="text-5xl mb-8 z-10 font-normal"
+            className="text-2xl lg:text-5xl lg:mb-8 mb-4  font-normal"
           />
           <h2
-            className="text-2xl z-10 w-full text-left mb-10"
+            className="text-lg lg:text-2xl  w-full text-left lg:mb-10 mb-4"
             style={{
               color: generateTextColor(overviewBgColor),
             }}
           >
             {COLOR_BRAND_EXPLANATION[isShadeOf(baseColor)]}
           </h2>
-          <div className="flex">
+          <div className="flex flex-col lg:flex-row">
             <Button
               onClick={smoothScrollToDownloadCSS}
-              className="z-10"
+              className=" mb-2 lg:mb-0"
               style={{
                 backgroundColor: primaryButtonColor,
               }}
@@ -101,7 +72,7 @@ export const Overview = (props: OverviewProps) => {
               outlined
             >
               <span
-                className="text-2xl font-bold"
+                className="text-lg lg:text-2xl font-bold"
                 style={{
                   color: generateTextColor(primaryButtonColor),
                 }}
@@ -113,57 +84,49 @@ export const Overview = (props: OverviewProps) => {
                 Download CSS
               </span>
             </Button>
-            <Button
-              className="z-10 ml-4"
-              style={{
-                backgroundColor: secondaryButtonColor,
-              }}
-              shadow
-              outlined
-              onClick={() => smoothScroll('explanation')}
-            >
-              <span
-                className="text-2xl font-bold"
+            <div className="flex flex-row">
+              <Button
+                className=" lg:ml-4 w-full"
                 style={{
-                  color: generateTextColor(secondaryButtonColor),
+                  backgroundColor: secondaryButtonColor,
                 }}
-                // className="gradient-text text-xl font-bold"
-                // style={{
-                //   background: cssGradientColors,
-                // }}
+                shadow
+                outlined
+                onClick={() => smoothScroll('explanation')}
               >
-                How does it work?
-              </span>
-            </Button>
-            <Button
-              className="z-10 ml-4"
-              style={{
-                backgroundColor: accentColor,
-              }}
-              shadow
-              outlined
-              onClick={generateNewColor}
-              tooltipTitle="Press space to generate new color!"
-              tooltipId="random-tooltip"
-            >
-              <img src={Random} alt="press space to generate new color" height={28} />
-            </Button>
-            <Tooltip id={'random-tooltip'} />
+                <span
+                  className="text-lg lg:text-2xl font-bold"
+                  style={{
+                    color: generateTextColor(secondaryButtonColor),
+                  }}
+                  // className="gradient-text text-xl font-bold"
+                  // style={{
+                  //   background: cssGradientColors,
+                  // }}
+                >
+                  How does it work?
+                </span>
+              </Button>
+              <Button
+                className=" lg:ml-4 ml-2"
+                style={{
+                  backgroundColor: accentColor,
+                }}
+                shadow
+                outlined
+                onClick={generateNewColor}
+                tooltipTitle="Press space to generate new color!"
+                tooltipId="random-tooltip"
+              >
+                <img src={Random} alt="press space to generate new color" height={28} />
+              </Button>
+              <Tooltip id={'random-tooltip'} />
+            </div>
           </div>
         </div>
       </div>
-      {/* <div className="w-full h-full flex items-center justify-center pr-10">
-        <div
-          style={{
-            backgroundColor: primaryButtonColor,
-          }}
-        >
-          <img src={Yayoi} alt="yayoi kusama" className="mix-blend-luminosity" />
-        </div>
-        <Artpiece />
-      </div> */}
       <section className="absolute bottom-10 w-full flex justify-between px-10">
-        <div className="flex items-center w-full">
+        <div className="lg:flex hidden items-center w-full">
           <div className="mr-2">
             <Palette
               color={backgroundColor}
@@ -254,7 +217,7 @@ export const Overview = (props: OverviewProps) => {
             </p>
           </button>
         </div>
-        <div className="w-full flex justify-end"></div>
+        <div className="w-full hidden lg:flex justify-end"></div>
       </section>
     </section>
   );
