@@ -112,11 +112,11 @@ export const CSSGenerator = () => {
   -webkit-background-clip: text !important;
   text-fill-color: transparent;
   -webkit-text-fill-color: transparent;
-  background: ${cssGradientColors};
+  background: ${cssGradientColors.replaceAll(', ', ',\n')};
 }
 
 .gradient-bg {
-  background: ${cssGradientColors};
+  background: ${cssGradientColors.replaceAll(', ', ',\n')};
 }`
     );
   };
@@ -159,12 +159,17 @@ export const CSSGenerator = () => {
   };
 
   return (
-    <section className="mb-0">
+    <section
+      className="mb-0"
+      style={{
+        minWidth: Math.max(350, 0.8 * window.innerWidth),
+      }}
+    >
       <div className="mb-4 flex justify-center">
         <Button
           type="text"
           className={classNames(
-            'mr-3 py-4 px-8 text-5xl',
+            'mr-3 py-2 px-4 text-lg lg:text-2xl',
             selectedType === 'css'
               ? 'bg-secondary hover:bg-secondary text-text-secondary hover:text-text-secondary-hover'
               : ''
@@ -176,7 +181,7 @@ export const CSSGenerator = () => {
         <Button
           type="text"
           className={classNames(
-            'mr-3 py-4 px-8 text-5xl',
+            'mr-3 py-2 px-4 text-lg lg:text-2xl',
             selectedType === 'tailwindcss'
               ? 'bg-secondary hover:bg-secondary text-text-secondary hover:text-text-secondary-hover'
               : ''

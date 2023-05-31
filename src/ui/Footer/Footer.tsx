@@ -4,9 +4,9 @@ import { Logo } from 'ui/Logo';
 export const Footer = () => {
   return (
     <div className="p-10 bg-white">
-      <div className="grid grid-cols-2 border-b border-solid border-0 pb-10 border-neutral-300">
+      <div className="grid gap-10 grid-cols-1 lg:grid-cols-2 border-b border-solid border-0 pb-10 border-neutral-300">
         <Logo />
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
           <div>
             <p className="text-xl font-bold mb-2">Tools</p>
             <Link to="/">
