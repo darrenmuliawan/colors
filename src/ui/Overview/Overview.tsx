@@ -31,11 +31,11 @@ export const Overview = (props: OverviewProps) => {
         background: overviewBgColor,
       }}
     >
-      <div className="xl:pl-10 px-10 xl:pb-0 pb-[100px]  justify-center items-center flex flex-col">
-        <div className="lg:max-w-[66%]">
+      <div className="xl:pl-10 px-10 xl:pb-0  justify-center items-center flex flex-col">
+        <div className="xl:max-w-[66%] md:max-w-[80%]">
           <div className="mb-4 flex ">
             <h1
-              className="text-4xl lg:text-8xl lg:mb-4 mb-2 "
+              className="text-4xl xl:text-8xl xl:mb-4 mb-2 "
               style={{
                 color: primaryButtonColor,
                 // background: cssGradientColors,
@@ -51,20 +51,20 @@ export const Overview = (props: OverviewProps) => {
           <RGBText
             text={baseColor}
             color={generateTextColor(overviewBgColor)}
-            className="text-2xl lg:text-5xl lg:mb-8 mb-4  font-normal"
+            className="text-2xl xl:text-5xl xl:mb-8 mb-4  font-normal"
           />
           <h2
-            className="text-lg lg:text-2xl  w-full text-left lg:mb-10 mb-4"
+            className="text-xl xl:text-2xl  w-full text-left xl:mb-10 mb-4"
             style={{
               color: generateTextColor(overviewBgColor),
             }}
           >
             {COLOR_BRAND_EXPLANATION[isShadeOf(baseColor)]}
           </h2>
-          <div className="flex flex-col lg:flex-row">
+          <div className="flex flex-col xl:flex-row">
             <Button
               onClick={smoothScrollToDownloadCSS}
-              className=" mb-2 lg:mb-0"
+              className=" mb-2 xl:mb-0"
               style={{
                 backgroundColor: primaryButtonColor,
               }}
@@ -72,7 +72,7 @@ export const Overview = (props: OverviewProps) => {
               outlined
             >
               <span
-                className="text-lg lg:text-2xl font-bold"
+                className="text-xl xl:text-2xl font-bold"
                 style={{
                   color: generateTextColor(primaryButtonColor),
                 }}
@@ -86,7 +86,7 @@ export const Overview = (props: OverviewProps) => {
             </Button>
             <div className="flex flex-row">
               <Button
-                className=" lg:ml-4 w-full"
+                className=" xl:ml-4 w-full"
                 style={{
                   backgroundColor: secondaryButtonColor,
                 }}
@@ -95,7 +95,7 @@ export const Overview = (props: OverviewProps) => {
                 onClick={() => smoothScroll('explanation')}
               >
                 <span
-                  className="text-lg lg:text-2xl font-bold"
+                  className="text-xl xl:text-2xl font-bold"
                   style={{
                     color: generateTextColor(secondaryButtonColor),
                   }}
@@ -108,7 +108,7 @@ export const Overview = (props: OverviewProps) => {
                 </span>
               </Button>
               <Button
-                className=" lg:ml-4 ml-2"
+                className=" xl:ml-4 ml-2"
                 style={{
                   backgroundColor: accentColor,
                 }}
@@ -126,7 +126,7 @@ export const Overview = (props: OverviewProps) => {
         </div>
       </div>
       <section className="absolute bottom-10 w-full flex justify-between px-10">
-        <div className="lg:flex hidden items-center w-full">
+        <div className="xl:flex hidden items-center w-full">
           <div className="mr-2">
             <Palette
               color={backgroundColor}
@@ -217,7 +217,7 @@ export const Overview = (props: OverviewProps) => {
             </p>
           </button>
         </div>
-        <div className="w-full hidden lg:flex justify-end"></div>
+        <div className="w-full hidden xl:flex justify-end"></div>
       </section>
     </section>
   );
