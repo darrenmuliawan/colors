@@ -1,10 +1,15 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { AnimatedDiv, Palette } from 'components';
+import { AnimatedDiv, Palette, RGBText } from 'components';
 import { useGeneratorColor, useWindowSize } from 'hooks';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSGenerator } from './CSSGenerator';
 import { Footer } from 'ui';
+import Illustration12 from 'assets/step1-2.png';
+import Illustration13 from 'assets/step1-3.png';
+import Illustration21 from 'assets/step2-1.png';
+import { generateTextColor } from 'utils';
+import ArrowDown from 'assets/arrow down.png';
 
 export const GeneratorExplanation = () => {
   const [step, setStep] = useState(0);
@@ -162,7 +167,7 @@ export const GeneratorExplanation = () => {
       end = 11 * window.innerHeight;
       position = 6 * window.innerHeight;
       sticked = isSticky(thirdStepDiv, div, position, end);
-      numCard = 7;
+      numCard = 6;
       totalOffset = numCard * cardSize + numCard * gapSize - 0.33 * window.innerWidth;
       height = end - position;
 
@@ -284,6 +289,7 @@ export const GeneratorExplanation = () => {
                   size="auto"
                   mode="hsl"
                   className="2xl:h-[256px] lg:h-[192px] h-[128px]"
+                  withLabel={false}
                 />
                 <p className="text-xl 2xl:text-2xl mt-4">
                   First step is to choose your main brand color and expand from there. This color
@@ -298,15 +304,26 @@ export const GeneratorExplanation = () => {
                   minWidth: cardSize,
                 }}
               >
-                {/* <div className="">
-                  <ColorPicker baseColor={baseColor} color={baseColor} />
+                <img
+                  src={Illustration12}
+                  alt="illustration step 1 - 2 color picker top right corner"
+                  className="2xl:h-[256px] lg:h-[192px] h-[128px] w-full rounded-lg"
+                />
+                {/* <div className="rounded-lg 2xl:h-[256px] lg:h-[192px] h-[128px] grid grid-cols-12">
+                  {Object.keys(BASE_COLOR).map((color, index) => (
+                    <div
+                      className=""
+                      key={`1-2-color-${index}`}
+                      style={{ backgroundColor: color }}
+                    ></div>
+                  ))}
                 </div> */}
-                <Palette
+                {/* <Palette
                   color={baseColor}
                   size="auto"
                   className="2xl:h-[256px] lg:h-[192px] h-[128px]"
                   mode="hsl"
-                />
+                /> */}
                 <p className="text-xl 2xl:text-2xl mt-4">
                   {' '}
                   These colors usually lies on the top right corner of the color picker. However, we
@@ -328,11 +345,10 @@ export const GeneratorExplanation = () => {
                   minWidth: cardSize,
                 }}
               >
-                <Palette
-                  color={baseColor}
-                  size="auto"
-                  className="2xl:h-[256px] lg:h-[192px] h-[128px]"
-                  mode="hsl"
+                <img
+                  src={Illustration13}
+                  alt="illustration step 1 - 3 primary color is for button, icons, text, etc"
+                  className="2xl:h-[256px] lg:h-[192px] h-[128px] w-full rounded-lg"
                 />
                 <p className="text-xl 2xl:text-2xl mt-4">
                   This color will be used for your primary buttons or CTA buttons, icons, links, or
@@ -362,11 +378,15 @@ export const GeneratorExplanation = () => {
                   minWidth: cardSize,
                 }}
               >
-                <Palette
+                {/* <Palette
                   color={baseColor}
                   size="auto"
-                  mode="hsl"
                   className="2xl:h-[256px] lg:h-[192px] h-[128px]"
+                /> */}
+                <img
+                  src={Illustration21}
+                  alt="illustration step 2 - 1 primary, secondary, and accent color with different shapes"
+                  className="2xl:h-[256px] lg:h-[192px] h-[128px] w-full rounded-lg object-fit"
                 />
                 <p className="text-xl 2xl:text-2xl mt-4">
                   In addition to our base color, we want to have secondary and accent colors.
@@ -381,8 +401,8 @@ export const GeneratorExplanation = () => {
                 <Palette
                   color={secondaryButtonColor}
                   size="auto"
-                  mode="hsl"
                   className="2xl:h-[256px] lg:h-[192px] h-[128px]"
+                  withLabel={false}
                 />
                 <p className="text-xl 2xl:text-2xl mt-4">
                   Secondary color is the color that often used alongside the primary color, like
@@ -401,8 +421,8 @@ export const GeneratorExplanation = () => {
                 <Palette
                   color={accentColor}
                   size="auto"
-                  mode="hsl"
                   className="2xl:h-[256px] lg:h-[192px] h-[128px]"
+                  withLabel={false}
                 />
                 <p className="text-xl 2xl:text-2xl mt-4">
                   Accent color is the decoration color. Its job is to provide emphasis, contrast, or
@@ -425,16 +445,24 @@ export const GeneratorExplanation = () => {
                   minWidth: cardSize,
                 }}
               >
-                <Palette
+                <div
+                  style={{ backgroundColor: baseColor }}
+                  className="2xl:h-[256px] lg:h-[192px] h-[128px] grid place-items-center 2xl:p-10 lg:p-6 p-4"
+                >
+                  <h1 className="text-lg 2xl:text-5xl text-center" style={{ color: accentColor }}>
+                    BUT RULES ARE MEANT TO BE BROKEN
+                  </h1>
+                </div>
+                {/* <Palette
                   color={baseColor}
                   size="auto"
                   mode="hsl"
                   className="2xl:h-[256px] lg:h-[192px] h-[128px]"
-                />
+                /> */}
 
                 <p className="text-xl 2xl:text-2xl mt-4">
                   The general rule of thumb to use these colors is 60:30:10
-                  (primary:secondary:accent).
+                  (primary:secondary:accent), but you do you.
                 </p>
               </div>
             </AnimatedDiv>
@@ -460,12 +488,44 @@ export const GeneratorExplanation = () => {
                   minWidth: cardSize,
                 }}
               >
-                <Palette
+                <div className="2xl:h-[256px] lg:h-[192px] h-[128px] bg-white p-4 rounded-lg gap-2 flex flex-col">
+                  <div style={{ backgroundColor: successColor }} className="p-2 rounded-lg">
+                    <p style={{ color: generateTextColor(successColor) }} className="text-sm">
+                      Success
+                    </p>
+                    <p style={{ color: generateTextColor(successColor) }} className="text-sm">
+                      This is success message
+                    </p>
+                  </div>
+                  <div
+                    style={{ backgroundColor: warningColor }}
+                    className="p-2 rounded-lg hidden 2xl:flex flex-col"
+                  >
+                    <p style={{ color: generateTextColor(warningColor) }} className="text-sm">
+                      Warning
+                    </p>
+                    <p style={{ color: generateTextColor(warningColor) }} className="text-sm">
+                      This is warning message
+                    </p>
+                  </div>
+                  <div
+                    style={{ backgroundColor: errorColor }}
+                    className="p-2 rounded-lg hidden lg:flex flex-col"
+                  >
+                    <p style={{ color: generateTextColor(errorColor) }} className="text-sm">
+                      Error
+                    </p>
+                    <p style={{ color: generateTextColor(errorColor) }} className="text-sm">
+                      This is error message
+                    </p>
+                  </div>
+                </div>
+                {/* <Palette
                   color={baseColor}
                   size="auto"
                   mode="hsl"
                   className="2xl:h-[256px] lg:h-[192px] h-[128px]"
-                />
+                /> */}
                 <p className="text-xl 2xl:text-2xl mt-4">
                   These are the colors that will be used when we need to use colors to send messages
                   to the users. I am sure you have been seeing these online. These colors are
@@ -545,35 +605,30 @@ export const GeneratorExplanation = () => {
                   minWidth: cardSize,
                 }}
               >
-                <Palette
-                  color={secondaryButtonColor}
-                  size="auto"
-                  mode="hsl"
-                  className="2xl:h-[256px] lg:h-[192px] h-[128px]"
-                />
+                <div className="2xl:h-[256px] lg:h-[192px] h-[128px] bg-white p-4 rounded-lg gap-2 flex flex-col items-center justify-around">
+                  <p className="hidden 2xl:flex text-sm 2xl:text-xl">Base color</p>
+                  <RGBText
+                    text={baseColor}
+                    color={'#000000'}
+                    mode="hsl"
+                    className="text-sm 2xl:text-xl"
+                  />
+                  <img src={ArrowDown} alt="arrow down" height={24} width={24} />
+                  <p className="hidden 2xl:flex text-sm 2xl:text-xl">Success color</p>
+                  <RGBText
+                    text={successColor}
+                    color={'#000000'}
+                    mode="hsl"
+                    className="text-sm 2xl:text-xl"
+                  />
+                </div>
                 <p className="text-xl 2xl:text-2xl mt-4">
                   How can we generate such colors? The rule of thumb is that we want a similar level
                   of saturation for our main brand color and these supporting colors. We do not want
                   a saturated main color and have desaturated supporting colors. To achieve this, we
                   look into the HSL values of our main color and adjust similar level of saturation
-                  (S) and lightness (L), typically within 5-10 range.
-                </p>
-              </div>
-              <div
-                className="border border-solid p-4 rounded-xl aspect-[1.618]"
-                style={{
-                  minWidth: cardSize,
-                }}
-              >
-                <Palette
-                  color={accentColor}
-                  size="auto"
-                  mode="hsl"
-                  className="2xl:h-[256px] lg:h-[192px] h-[128px]"
-                />
-                <p className="text-xl 2xl:text-2xl mt-4">
-                  However, this should not be the case if your main color lies toward
-                  neutral/desaturated color.
+                  (S) and lightness (L), typically within 5-10 range. However, this should not be
+                  the case if your main color lies toward neutral/desaturated color.
                 </p>
               </div>
             </AnimatedDiv>
@@ -619,47 +674,59 @@ export const GeneratorExplanation = () => {
             </div>
           </div>
         </div>
-        <div className="h-screen bg-blue-200 grid place-items-center">
-          <div className="sticky top-0">
-            <AnimatedDiv transform={transform}>
+        <div
+          className="h-screen bg-blue-200 grid place-items-center"
+          style={{ scrollSnapAlign: 'center' }}
+        >
+          <div className="">
+            <AnimatedDiv transform={''}>
               <div className="">
-                <h1 className="text-center text-8xl xl:text-9xl">
+                <h1 className="text-center text-7xl xl:text-8xl">
                   🎉 Well that&apos;s it, really!
                 </h1>
               </div>
             </AnimatedDiv>
           </div>
         </div>
-        <div className="h-screen bg-blue-200 grid place-items-center">
-          <div className="sticky top-0">
-            <AnimatedDiv transform={transform}>
+        <div
+          className="h-screen bg-blue-200 grid place-items-center p-10"
+          style={{ scrollSnapAlign: 'center' }}
+        >
+          <div className="">
+            <AnimatedDiv transform={''}>
               <div className="">
-                <h1 className="xl:text-center text-left text-6xl xl:text-9xl">
+                <h1 className="xl:text-center text-left text-4xl xl:text-7xl">
                   This is just a tool to help you quickstart choosing your color palettes. This tool
-                  works because of a set of axlorithms applied to certain colors.
+                  works because of a set of algorithms applied to certain colors.
                 </h1>
               </div>
             </AnimatedDiv>
           </div>
         </div>
-        <div className="h-screen bg-blue-200 grid place-items-center">
-          <div className="sticky top-0">
-            <AnimatedDiv transform={transform}>
+        <div
+          className="h-screen bg-blue-200 grid place-items-center p-10"
+          style={{ scrollSnapAlign: 'center' }}
+        >
+          <div className="">
+            <AnimatedDiv transform={''}>
               <div className="">
-                <h1 className="xl:text-center text-left text-6xl xl:text-9xl">
+                <h1 className="xl:text-center text-left text-3xl xl:text-6xl">
                   It is probably impossible (or very hard) to get beautiful set of colors just by
-                  doing axlorithms. As humans, it is our job to fine-tune these colors to our
+                  doing algorithms. As humans, it is our job to fine-tune these colors to our
                   liking.
                 </h1>
               </div>
             </AnimatedDiv>
           </div>
         </div>
-        <div className="h-screen bg-blue-200 grid place-items-center">
-          <div className="sticky top-0">
-            <AnimatedDiv transform={transform}>
+        <div
+          className="h-screen bg-blue-200 grid place-items-center p-10"
+          style={{ scrollSnapAlign: 'center' }}
+        >
+          <div className="">
+            <AnimatedDiv transform={''}>
               <div className="">
-                <h1 className="xl:text-center text-left text-6xl xl:text-9xl">
+                <h1 className="xl:text-center text-left text-3xl xl:text-6xl">
                   {' '}
                   At the end of the day, you are the final judge so always trust your own eyes!
                   &#128064;
@@ -668,7 +735,11 @@ export const GeneratorExplanation = () => {
             </AnimatedDiv>
           </div>
         </div>
-        <div id="download-css" className="bg-blue-200 grid place-items-center">
+        <div
+          id="download-css"
+          className="bg-blue-200 grid place-items-center pb-10"
+          style={{ scrollSnapAlign: 'center' }}
+        >
           <h1 className="px-4 text-center text-3xl xl:text-6xl">
             You can copy this CSS or Tailwind CSS file
           </h1>
