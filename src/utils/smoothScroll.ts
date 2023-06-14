@@ -38,7 +38,7 @@ export const smoothScrollToDownloadCSS = () => {
     const duration = 5000; // adjust to control the scrolling speed
     const targetDiv = document.querySelector('#generator-explanation');
 
-    const animate = (currentTime: number, start: number, targetDiv: HTMLElement): void => {
+    const animate = (currentTime: number, start: number, targetDiv: Element): void => {
       if (!start) start = currentTime;
       const progress = currentTime - start;
       const scrollTo = easeInOutQuad(progress, startPosition, distance, duration);
